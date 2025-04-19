@@ -1,0 +1,15 @@
+<script>
+    // Check for dark mode preference
+    function updateHeaderTheme() {
+        const isDark = document.documentElement.classList.contains('dark');
+        // Header styling simplified, CSS variables removed
+    }
+
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        updateHeaderTheme();
+    } else {
+        document.documentElement.classList.remove('dark');
+        updateHeaderTheme();
+    }
+</script> 

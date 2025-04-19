@@ -57,7 +57,7 @@
             >
                 <span>Menu</span>
                 {# Hamburger Icon (Initially visible) #}
-                <svg class="h-5 w-5 shrink-0 text-dark-400 dark:text-dark-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" {{ stimulus_target('webuiMainNavigation', 'dropdownToggleButtonIcon') }}>
+                <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" {{ stimulus_target('webuiMainNavigation', 'dropdownToggleButtonIcon') }}>
                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                 </svg>
                 {# Close Icon (Initially hidden) #}
@@ -71,7 +71,7 @@
                  {{ stimulus_target('webuiMainNavigation', 'dropdownMenu') }}
             >
                 {# Sidebar Content (Scrollable) #}
-                <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 pt-5">
+                <div class="h-full flex flex-col gap-y-5 overflow-y-auto px-6 pb-4 pt-5">
                     {# Navigation structure #}
                     <nav class="flex flex-1 flex-col">
                         <ul role="list" class="flex flex-1 flex-col gap-y-7">
