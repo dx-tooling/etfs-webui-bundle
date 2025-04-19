@@ -33,7 +33,6 @@ body {
     rounded-sm;
 }
 
-/* New navigation classes */
 .etfswui-nav-section-title {
     @apply text-xs font-semibold leading-6 text-dark-500 dark:text-dark-400 px-2 mb-2;
 }
@@ -85,6 +84,17 @@ body {
 .etfswui-nav-tertiary-icon {
     @apply h-6 w-6 shrink-0 text-dark-400 dark:text-dark-500
     transition-colors duration-150;
+}
+
+/* Fullcontent header nav links */
+.etfswui-nav-link-fullcontent {
+    @apply text-dark-700 dark:text-dark-300 rounded-md px-3 py-2
+    hover:bg-dark-100 dark:hover:bg-dark-700/50
+    transition-colors duration-150;
+}
+
+.etfswui-nav-link-fullcontent-active {
+    @apply rounded-md px-3 py-2 bg-dark-100 dark:bg-dark-700/50;
 }
 
 /* Typography */
@@ -152,7 +162,6 @@ body {
     hover:bg-primary-700
     hover:cursor-pointer hover:no-underline
     active:bg-primary-800
-    focus-visible:outline
     focus-visible:outline-2 focus-visible:outline-offset-2
     focus-visible:outline-primary-500
     transition-all duration-150;
@@ -169,7 +178,6 @@ body {
     px-3 py-2 text-sm font-semibold text-danger-600 hover:text-white no-underline
     hover:cursor-pointer hover:no-underline
     active:bg-danger-800
-    focus-visible:outline
     focus-visible:outline-2 focus-visible:outline-offset-2
     focus-visible:outline-danger-500
     border border-solid border-danger-500
@@ -181,7 +189,6 @@ body {
     px-3 py-2 text-sm font-semibold text-secondary-600 hover:text-white no-underline
     hover:cursor-pointer hover:no-underline
     active:bg-secondary-800
-    focus-visible:outline
     focus-visible:outline-2 focus-visible:outline-offset-2
     focus-visible:outline-secondary-500
     border border-solid border-secondary-500
@@ -195,7 +202,6 @@ body {
     hover:bg-primary-700
     hover:cursor-pointer
     active:bg-primary-800
-    focus-visible:outline
     focus-visible:outline-2 focus-visible:outline-offset-2
     focus-visible:outline-primary-500
     transition-all duration-150;
@@ -212,7 +218,6 @@ body {
     px-3 py-2 text-sm font-semibold text-danger-600 hover:text-white
     hover:cursor-pointer
     active:bg-danger-800
-    focus-visible:outline
     focus-visible:outline-2 focus-visible:outline-offset-2
     focus-visible:outline-danger-500
     border border-solid border-danger-500
@@ -224,7 +229,6 @@ body {
     px-3 py-2 text-sm font-semibold text-secondary-600 hover:text-white
     hover:cursor-pointer
     active:bg-secondary-800
-    focus-visible:outline
     focus-visible:outline-2 focus-visible:outline-offset-2
     focus-visible:outline-secondary-500
     border border-solid border-secondary-500
@@ -448,7 +452,7 @@ body {
 .etfswui-pagination-item {
     @apply relative inline-flex items-center px-4 py-2 text-sm font-semibold
     border border-dark-300 dark:border-dark-600
-    focus:z-20 focus-visible:outline focus-visible:outline-2
+    focus:z-20 focus-visible:outline-2
     focus-visible:outline-offset-2 focus-visible:outline-primary-500;
 }
 
@@ -457,7 +461,7 @@ body {
     bg-primary-500 text-white
     border border-primary-500 dark:border-primary-600
     hover:bg-primary-600
-    focus:z-20 focus-visible:outline focus-visible:outline-2
+    focus:z-20 focus-visible:outline-2
     focus-visible:outline-offset-2 focus-visible:outline-primary-500;
 }
 
@@ -582,6 +586,3 @@ body {
 .etfswui-alert-body-danger {
     @apply text-sm text-danger-700 dark:text-danger-200;
 }
-
-/* Dropdown styles (used in small viewport nav, potentially reusable) */
-/* Removed unused dropdown styles */

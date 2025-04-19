@@ -34,7 +34,7 @@
     </script>
 </head>
 
-<body class="h-full bg-secondary-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+<body class="h-full bg-secondary-50 dark:bg-dark-900 text-dark-900 dark:text-dark-100 transition-colors duration-150">
 <div {{ stimulus_controller('webuiMainNavigation') }} class="min-h-screen">
     {% block navigation %}
         {{ component('webui|main_navigation|small_viewport|appshell') }}
@@ -42,7 +42,7 @@
     {% endblock %}
 
     <div class="lg:pl-72 flex-1">
-        <header class="sticky top-0 z-40 bg-white dark:bg-dark-800 border-b border-gray-200 dark:border-dark-700">
+        <header class="sticky top-0 z-40 bg-white dark:bg-dark-800 border-b border-dark-200 dark:border-dark-700">
             <div class="flex h-16 items-center gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:px-8 w-full">
                 {% block header_left %}
                     <div class="lg:hidden"> {# Show logo only on small screens here #}
@@ -56,7 +56,7 @@
                         <button
                             type="button"
                             onclick="toggleDarkMode()"
-                            class="rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
+                            class="rounded-full w-9 h-9 flex items-center justify-center text-dark-600 hover:text-primary-600 dark:text-dark-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
                         >
                             <svg class="hidden dark:block h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
@@ -70,10 +70,10 @@
 
                         {# Mobile menu toggle #}
                         <button type="button"
-                                class="lg:hidden rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
+                                class="lg:hidden flex items-center gap-x-1.5 p-2 text-sm font-medium text-dark-700 bg-white rounded-md border border-dark-300 shadow-sm hover:bg-dark-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-dark-700 dark:text-dark-200 dark:border-dark-600 dark:hover:bg-dark-600 dark:focus:ring-offset-dark-800 cursor-pointer"
                                 {{ stimulus_action('webuiMainNavigation', 'toggleMobileSidebar', 'click') }}
                         >
-                            <span class="sr-only">Show navigation</span>
+                            <span>Menu</span>
                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                             </svg>

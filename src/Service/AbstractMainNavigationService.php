@@ -40,33 +40,6 @@ abstract readonly class AbstractMainNavigationService
 
     abstract public function getBrandLogoHtml(): string;
 
-    /**
-     * The following three functions are only relevant on "fullcontent" pages,
-     * and only on the large_viewport variant ("desktop").
-     *
-     * In this context, there are two presentation versions:
-     * a) the secondary main navigation is part of the dropdown
-     * b) the secondary main navigation is not part of the dropdown
-     *
-     * In version a, the main navigation is presented like this:
-     *
-     * <primary nav entries>                                           <dropdown title><dropdown icon>
-     *                                                                 (in opened dropdown:)
-     *                                                                 <secondary nav title>
-     *                                                                 <secondary nav entries>
-     *                                                                 <tertiary nav title>
-     *                                                                 <tertiary nav entries>
-     *
-     * In version b, the main navigation is presented like this:
-     *
-     * <primary nav entries>                   <secondary nav entries> <dropdown title><dropdown icon>
-     *                                                                 (in opened dropdown:)
-     *                                                                 <tertiary nav entries>
-     */
-    abstract public function getDropdownTitle(): string;
-
-    abstract public function getDropdownSvgIcon(): string;
-
     public function secondaryMainNavigationIsPartOfDropdown(): bool
     {
         return false;

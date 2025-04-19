@@ -12,7 +12,7 @@
         data-transition-enter="transition-opacity ease-linear duration-150"
         data-transition-enter-start="opacity-0"
         data-transition-enter-end="opacity-100"
-        data-transition-leave="transition-opacity ease-linear duration-200"
+        data-transition-leave="transition-opacity ease-linear duration-150"
         data-transition-leave-start="opacity-100"
         data-transition-leave-end="opacity-0"
         hidden
@@ -22,7 +22,7 @@
         {# Close button container #}
         <div class="absolute top-0 right-0 h-16 flex items-center px-4 sm:px-6 z-10">
             <button type="button"
-                    class="rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
+                    class="rounded-full w-9 h-9 flex items-center justify-center text-dark-600 hover:text-primary-600 dark:text-dark-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none cursor-pointer"
                     {{ stimulus_action('webuiMainNavigation', 'closeMobileSidebar', 'click') }}
             >
                 <span class="sr-only">Close menu</span>
@@ -43,27 +43,30 @@
             <nav class="flex flex-1 flex-col">
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">
                     {# Primary Navigation Group #}
-                    <li>
-                        <ul role="list" class="etfswui-nav-group space-y-1">
-                            {% for entry in this.mainNavigationService.primaryMainNavigationEntries %}
-                                {% if entry.isSeparator %}
-                                    <li><div class="my-2 h-px bg-gray-200 dark:bg-gray-700"></div></li>
-                                {% else %}
-                                    <li>
-                                        <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
-                                           class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
-                                            {% if entry.iconSvg %}
-                                                <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                    {{ entry.iconSvg|raw }}
-                                                </svg>
-                                            {% endif %}
-                                            <span>{{ entry.title }}</span>
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </li>
+                    {% if this.mainNavigationService.primaryMainNavigationEntries|length > 0 %}
+                        <li>
+                            <div class="etfswui-nav-section-title px-2">{{ this.mainNavigationService.primaryMainNavigationTitle }}</div>
+                            <ul role="list" class="etfswui-nav-group mt-2 space-y-1">
+                                {% for entry in this.mainNavigationService.primaryMainNavigationEntries %}
+                                    {% if entry.isSeparator %}
+                                        <li><div class="my-2 h-px bg-dark-200 dark:bg-dark-700"></div></li>
+                                    {% else %}
+                                        <li>
+                                            <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
+                                               class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
+                                                {% if entry.iconSvg %}
+                                                    <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                        {{ entry.iconSvg|raw }}
+                                                    </svg>
+                                                {% endif %}
+                                                <span>{{ entry.title }}</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
 
                     {# Secondary Navigation Group #}
                     {% if this.mainNavigationService.finalSecondaryMainNavigationEntries|length > 0 %}
@@ -72,7 +75,7 @@
                             <ul role="list" class="etfswui-nav-group mt-2 space-y-1">
                                 {% for entry in this.mainNavigationService.finalSecondaryMainNavigationEntries %}
                                     {% if entry.isSeparator %}
-                                        <li><div class="my-2 h-px bg-gray-200 dark:bg-gray-700"></div></li>
+                                        <li><div class="my-2 h-px bg-dark-200 dark:bg-dark-700"></div></li>
                                     {% else %}
                                         <li>
                                             <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
@@ -94,10 +97,14 @@
                     {# Tertiary Navigation Group #}
                     {% if this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}
                         <li class="mt-auto">
-                            <ul role="list" class="etfswui-nav-group space-y-1 {% if this.mainNavigationService.tertiaryMainNavigationTitle %}mt-2{% endif %}">
+                             {# Show title if entries exist #}
+                             {% if this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}
+                                  <div class="etfswui-nav-section-title px-2">{{ this.mainNavigationService.tertiaryMainNavigationTitle }}</div>
+                             {% endif %}
+                            <ul role="list" class="etfswui-nav-group space-y-1 {% if this.mainNavigationService.tertiaryMainNavigationTitle and this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}mt-2{% endif %}">
                                 {% for entry in this.mainNavigationService.tertiaryMainNavigationEntries %}
                                     {% if entry.isSeparator %}
-                                        <li><div class="my-2 h-px bg-gray-200 dark:bg-gray-700"></div></li>
+                                        <li><div class="my-2 h-px bg-dark-200 dark:bg-dark-700"></div></li>
                                     {% else %}
                                         <li>
                                             <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
