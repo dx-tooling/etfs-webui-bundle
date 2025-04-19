@@ -1,73 +1,126 @@
 {# @var this \EnterpriseToolingForSymfony\WebuiBundle\Component\MainNavigationSmallViewportAppshellComponent #}
+{#
+  This component renders the navigation menu for small viewports in the 'appshell' layout.
+  It appears as a full-screen opaque overlay, styled like the large viewport appshell sidebar.
+#}
 <div
         data-testid="main-navigation-small-viewport"
-        class="relative z-50 hidden"
+        class="fixed inset-0 z-50 lg:hidden" {# Removed flex #}
         role="dialog"
         aria-modal="true"
         {{ stimulus_target('webuiMainNavigation', 'mainNavigationSmallViewportOutermostContainer') }}
-        data-transition-enter="transition ease-in-out duration-150"
+        data-transition-enter="transition-opacity ease-linear duration-150"
         data-transition-enter-start="opacity-0"
         data-transition-enter-end="opacity-100"
-        data-transition-leave="transition ease-in-out duration-150"
+        data-transition-leave="transition-opacity ease-linear duration-200"
         data-transition-leave-start="opacity-100"
         data-transition-leave-end="opacity-0"
+        hidden {# Start hidden, controller will toggle #}
 >
-    {# Backdrop overlay - click to close #}
-    <div class="fixed inset-0 backdrop" {{ stimulus_action('webuiMainNavigation', 'closeMobileSidebar', 'click') }}></div>
+    {# Full screen opaque content container #}
+    <div class="relative flex flex-col w-full h-full etfswui-nav-bg">
+        {# Close button container - Positioned like header button #}
+        <div class="absolute top-0 right-0 h-16 flex items-center px-4 sm:px-6 z-10">
+            <button type="button"
+                    class="rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none" {# Match hamburger style #}
+                    {{ stimulus_action('webuiMainNavigation', 'closeMobileSidebar', 'click') }}
+            >
+                <span class="sr-only">Close menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
 
-    {# Content container - positioned like the fullcontent variant dropdown #}
-    <div class="absolute right-0 top-16 w-64 max-h-[calc(100vh-4rem)] overflow-y-auto rounded-sm bg-white dark:bg-dark-800 ring-1 ring-gray-200 dark:ring-dark-700 shadow-lg">
-        <div class="p-2 space-y-1">
-            {# Primary navigation entries #}
-            {% if this.mainNavigationService.primaryMainNavigationEntries|length > 0 %}
-                <div class="px-3 py-1 text-base font-normal text-gray-500 dark:text-gray-400">
-                    {{ this.mainNavigationService.primaryMainNavigationTitle }}
-                </div>
-                {% for entry in this.mainNavigationService.primaryMainNavigationEntries %}
-                    {% if entry.isSeparator %}
-                        <div class="h-px bg-gray-200 dark:bg-dark-700 my-1"></div>
-                    {% else %}
-                        <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
-                           class="pl-7 group flex items-center gap-x-2 rounded-sm px-3 py-2 text-sm leading-6 font-thinner !text-black dark:!text-white {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
-                            {{ entry.title }}
-                        </a>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+        {# Actual Sidebar Content (Scrollable) - Added pt-16 #}
+        <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 pt-16">
+            {# Logo Area (Optional, mirrors large viewport) #}
+            <div class="flex h-16 shrink-0 items-center text-primary-600 dark:text-primary-400">
+                <span class="text-xl font-bold">BrandLogo</span>
+            </div>
 
-            {# Secondary navigation entries #}
-            {% if this.mainNavigationService.finalSecondaryMainNavigationEntries|length > 0 %}
-                <div class="px-3 py-1 text-base font-normal text-gray-500 dark:text-gray-400">
-                    {{ this.mainNavigationService.secondaryMainNavigationTitle }}
-                </div>
-                {% for entry in this.mainNavigationService.finalSecondaryMainNavigationEntries %}
-                    {% if entry.isSeparator %}
-                        <div class="h-px bg-gray-200 dark:bg-dark-700 my-1"></div>
-                    {% else %}
-                        <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
-                           class="pl-7 group flex items-center gap-x-2 rounded-sm px-3 py-2 text-sm leading-6 font-thinner !text-black dark:!text-white {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
-                            {{ entry.title }}
-                        </a>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+            {# Navigation structure (mirrors large viewport) #}
+            <nav class="flex flex-1 flex-col">
+                <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                    {# Primary Navigation Group #}
+                    <li>
+                        <ul role="list" class="etfswui-nav-group space-y-1">
+                            {% for entry in this.mainNavigationService.primaryMainNavigationEntries %}
+                                {% if entry.isSeparator %}
+                                    <li><div class="my-2 h-px bg-gray-200 dark:bg-gray-700"></div></li>
+                                {% else %}
+                                    <li>
+                                        <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
+                                           class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
+                                            {% if entry.iconSvg %}
+                                                <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                    {{ entry.iconSvg|raw }}
+                                                </svg>
+                                            {% endif %}
+                                            <span>{{ entry.title }}</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
 
-            {# Tertiary navigation entries #}
-            {% if this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}
-                <div class="px-3 py-1 text-base font-normal text-gray-500 dark:text-gray-400">
-                    {{ this.mainNavigationService.tertiaryMainNavigationTitle }}
-                </div>
-                {% for entry in this.mainNavigationService.tertiaryMainNavigationEntries %}
-                    {% if entry.isSeparator %}
-                        <div class="h-px bg-gray-200 dark:bg-dark-700 my-1"></div>
-                    {% else %}
-                        <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
-                           class="pl-7 group flex items-center gap-x-2 rounded-sm px-3 py-2 text-sm leading-6 font-thinner !text-black dark:!text-white {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
-                            {{ entry.title }}
-                        </a>
+                    {# Secondary Navigation Group #}
+                    {% if this.mainNavigationService.finalSecondaryMainNavigationEntries|length > 0 %}
+                        <li>
+                            <div class="etfswui-nav-section-title px-2">{{ this.mainNavigationService.secondaryMainNavigationTitle }}</div>
+                            <ul role="list" class="etfswui-nav-group mt-2 space-y-1">
+                                {% for entry in this.mainNavigationService.finalSecondaryMainNavigationEntries %}
+                                    {% if entry.isSeparator %}
+                                        <li><div class="my-2 h-px bg-gray-200 dark:bg-gray-700"></div></li>
+                                    {% else %}
+                                        <li>
+                                            <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
+                                               class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
+                                                {% if entry.iconSvg %}
+                                                    <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                        {{ entry.iconSvg|raw }}
+                                                    </svg>
+                                                {% endif %}
+                                                <span>{{ entry.title }}</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
                     {% endif %}
-                {% endfor %}
-            {% endif %}
+
+                    {# Tertiary Navigation Group (Pushed to bottom) #}
+                    {% if this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}
+                        <li class="mt-auto">
+                            {# Add title if desired: <div class="etfswui-nav-section-title px-2">{{ this.mainNavigationService.tertiaryMainNavigationTitle }}</div> #}
+                            <ul role="list" class="etfswui-nav-group space-y-1 {% if this.mainNavigationService.tertiaryMainNavigationTitle %}mt-2{% endif %}">
+                                {% for entry in this.mainNavigationService.tertiaryMainNavigationEntries %}
+                                    {% if entry.isSeparator %}
+                                        <li><div class="my-2 h-px bg-gray-200 dark:bg-gray-700"></div></li>
+                                    {% else %}
+                                        <li>
+                                            <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
+                                               class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
+                                                {% if entry.iconSvg %}
+                                                    <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                        {{ entry.iconSvg|raw }}
+                                                    </svg>
+                                                {% endif %}
+                                                <span>{{ entry.title }}</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
     </div>
+
+    {# Backdrop/Overlay - Removed #}
+    {# <div class="flex-1 bg-gray-900/50 dark:bg-gray-900/80" aria-hidden="true" {{ stimulus_action('webuiMainNavigation', 'closeMobileSidebar', 'click') }}></div> #}
 </div>

@@ -15,6 +15,10 @@ body {
     @apply border-r border-gray-200/50 dark:border-dark-700/50;
 }
 
+.etfswui-nav-border-left {
+    @apply border-l border-gray-200/50 dark:border-dark-700/50;
+}
+
 .etfswui-nav-link {
     @apply text-gray-600 dark:text-dark-300
     hover:text-gray-900 dark:hover:text-dark-100
@@ -92,6 +96,15 @@ body {
     @apply text-4xl font-bold tracking-tight text-gray-900 dark:text-white;
 }
 
+/* Gradient H1 - Base Styles */
+.etfswui-h1-gradient {
+     @apply text-4xl font-extrabold tracking-tight; /* Size and weight, no color */
+}
+/* Gradient H1 - Span for Gradient Effect */
+.etfswui-h1-gradient-span {
+    @apply bg-gradient-to-r from-blue-600 to-purple-700 bg-clip-text text-transparent;
+}
+
 .etfswui-h2 {
     @apply text-3xl font-semibold tracking-tight text-gray-800 dark:text-white;
 }
@@ -114,7 +127,7 @@ body {
 
 /* Links */
 .etfswui-link-default {
-    @apply inline text-black hover:text-black hover:underline dark:text-white dark:hover:text-white
+    @apply inline text-primary-500 hover:text-primary-600 hover:underline dark:text-primary-400 dark:hover:text-primary-300
     transition-all duration-150;
 }
 
@@ -135,8 +148,7 @@ body {
 /* Links that look like buttons */
 .etfswui-link-as-button-default {
     @apply inline-flex items-center rounded-sm bg-primary-500
-    px-3 py-2 text-sm font-semibold text-black hover:text-white no-underline
-    dark:text-white dark:hover:text-white
+    px-3 py-2 text-sm font-semibold text-white no-underline
     hover:bg-primary-700
     hover:cursor-pointer hover:no-underline
     active:bg-primary-800
@@ -179,7 +191,7 @@ body {
 /* Buttons */
 .etfswui-button-default {
     @apply inline-flex items-center rounded-sm bg-primary-500
-    px-3 py-2 text-sm font-semibold text-black hover:text-white
+    px-3 py-2 text-sm font-semibold text-white
     hover:bg-primary-700
     hover:cursor-pointer
     active:bg-primary-800
@@ -221,7 +233,7 @@ body {
 
 /* Buttons that look like links */
 .etfswui-button-as-link-default {
-    @apply inline text-black hover:text-black hover:underline dark:text-white dark:hover:text-white
+    @apply inline text-primary-500 hover:text-primary-600 hover:underline dark:text-primary-400 dark:hover:text-primary-300
     border-0 bg-transparent p-0 focus-visible:outline-none hover:cursor-pointer;
 }
 
@@ -282,9 +294,7 @@ body {
 
 .etfswui-form-checkbox {
     @apply h-4 w-4 rounded border-gray-300 dark:border-dark-600
-    text-gray-500 dark:text-gray-500
-    focus:ring-gray-500 dark:focus:ring-gray-500
-    bg-white dark:bg-dark-800;
+    focus:ring-indigo-500 focus:ring-offset-0;
 }
 
 .etfswui-form-checkbox-label {
@@ -297,13 +307,26 @@ body {
 
 .etfswui-form-radio {
     @apply h-4 w-4 border-gray-300 dark:border-dark-600
-    text-gray-500 dark:text-gray-500
-    focus:ring-gray-500 dark:focus:ring-gray-500
-    bg-white dark:bg-dark-800;
+    focus:ring-indigo-500 focus:ring-offset-0;
 }
 
 .etfswui-form-radio-label {
     @apply ml-2 text-sm text-gray-900 dark:text-dark-100 leading-none;
+}
+
+/* Input Validation States */
+.etfswui-form-input-valid {
+    @apply border-green-500 dark:border-green-600
+    focus:ring-green-500 focus:border-green-500;
+}
+
+.etfswui-form-input-invalid {
+    @apply border-red-500 dark:border-red-600
+    focus:ring-red-500 focus:border-red-500;
+}
+
+.etfswui-form-error-text {
+    @apply mt-1 text-xs text-red-600 dark:text-red-400;
 }
 
 /* Tables */
@@ -335,13 +358,13 @@ body {
 
 /* Cards */
 .etfswui-card {
-    @apply bg-white dark:bg-dark-800 shadow-sm ring-1 ring-gray-200/50 dark:ring-dark-700/50 rounded-sm p-0 overflow-hidden
+    @apply bg-white dark:bg-dark-800 shadow-sm ring-1 ring-gray-200/50 dark:ring-dark-700/50 rounded-md p-0 overflow-hidden
     transition-all duration-150;
 }
 
 .etfswui-card-title {
-    @apply flex items-center justify-between text-lg font-semibold text-gray-900 dark:text-dark-100 px-6 py-3 mb-0
-    border-b-2 border-gray-200 dark:border-dark-700;
+    @apply flex items-center justify-between text-lg font-semibold text-gray-900 dark:text-dark-100 px-6 py-4
+    border-b border-gray-200 dark:border-dark-700;
 }
 
 .etfswui-card-title-content {
@@ -367,7 +390,7 @@ body {
 }
 
 .etfswui-card-content {
-    @apply p-6 pt-4 flex gap-6;
+    @apply p-6;
 }
 
 .etfswui-card-image {
@@ -426,23 +449,23 @@ body {
     @apply relative inline-flex items-center px-4 py-2 text-sm font-semibold
     border border-gray-300 dark:border-dark-600
     focus:z-20 focus-visible:outline focus-visible:outline-2
-    focus-visible:outline-offset-2 focus-visible:outline-corporate-main-500;
+    focus-visible:outline-offset-2 focus-visible:outline-primary-500;
 }
 
 .etfswui-pagination-item-active {
     @apply relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold
-    bg-corporate-main-500 text-white
-    border border-corporate-main-500 dark:border-corporate-main-600
-    hover:bg-corporate-main-600
+    bg-primary-500 text-white
+    border border-primary-500 dark:border-primary-600
+    hover:bg-primary-600
     focus:z-20 focus-visible:outline focus-visible:outline-2
-    focus-visible:outline-offset-2 focus-visible:outline-corporate-main-500;
+    focus-visible:outline-offset-2 focus-visible:outline-primary-500;
 }
 
 .etfswui-pagination-nav-button {
     @apply relative inline-flex items-center px-2 py-2
     text-gray-500 dark:text-gray-400
     ring-1 ring-inset ring-gray-300 dark:ring-dark-600
-    hover:bg-gray-50 hover:text-corporate-main-500 dark:hover:bg-dark-700 dark:hover:text-corporate-main-400
+    hover:bg-gray-50 hover:text-primary-500 dark:hover:bg-dark-700 dark:hover:text-primary-400
     focus:z-20 focus:outline-offset-0
     transition-all duration-150;
 }
@@ -476,70 +499,109 @@ body {
     @apply relative;
 }
 
-/* Small viewport menu positioning */
-.etfswui-small-viewport-menu {
-    @apply fixed right-0 top-16 z-50 w-64 rounded-sm bg-white dark:bg-dark-800
-    ring-1 ring-gray-200 dark:ring-dark-700
-    shadow-lg;
-}
+/* Alerts - Updated Styles */
 
-.etfswui-small-viewport-menu-backdrop {
-    @apply fixed inset-0 bg-transparent;
-}
-
-/* Alerts */
+/* Base container for simple alerts */
 .etfswui-alert {
-    @apply rounded-sm p-0 overflow-hidden shadow-sm ring-1 mb-4
-    transition-all duration-150;
+    @apply rounded-md p-0 overflow-hidden shadow-sm ring-1;
 }
 
+/* Padding for alert content */
+.etfswui-alert-body {
+    @apply px-4 py-3;
+}
+
+/* Simple Alert Color Variants (matching badges) */
 .etfswui-alert-success {
-    @apply bg-green-50 dark:bg-green-900/20
-    ring-green-200/70 dark:ring-green-900/40;
+    @apply bg-green-50 dark:bg-green-900/20 ring-green-600/30; /* Adjusted ring to match badge */
+}
+.etfswui-alert-success-text {
+    @apply text-sm font-medium text-green-800 dark:text-green-300; /* Adjusted color to match badge */
 }
 
-.etfswui-alert-info {
-    @apply bg-blue-50 dark:bg-blue-900/20
-    ring-blue-200/70 dark:ring-blue-900/40;
+.etfswui-alert-warning {
+    @apply bg-yellow-100 dark:bg-yellow-900/30 ring-yellow-600/30; /* Matches badge */
+}
+.etfswui-alert-warning-text {
+    @apply text-sm font-medium text-yellow-800 dark:text-yellow-300; /* Matches badge */
 }
 
 .etfswui-alert-danger {
-    @apply bg-danger-50 dark:bg-danger-900/20
-    ring-danger-200/70 dark:ring-danger-900/40;
+    @apply bg-danger-50 dark:bg-danger-900/20 ring-danger-600/30; /* Adjusted ring to match badge */
+}
+.etfswui-alert-danger-text {
+    @apply text-sm font-medium text-danger-800 dark:text-danger-300; /* Adjusted color to match badge */
+}
+
+.etfswui-alert-info {
+    @apply bg-blue-50 dark:bg-blue-900/20 ring-blue-600/30; /* Adjusted ring to match badge */
+}
+.etfswui-alert-info-text {
+    @apply text-sm font-medium text-blue-800 dark:text-blue-300; /* Adjusted color to match badge */
+}
+
+
+/* Alert with Title/Body structure */
+.etfswui-alert-with-details { /* Renamed from previous edits - reusing base alert style */
+    @apply rounded-md p-0 overflow-hidden shadow-sm ring-1;
 }
 
 .etfswui-alert-title {
-    @apply flex items-center justify-between text-lg font-semibold px-6 py-3 mb-0
-    border-b;
+    @apply flex items-center gap-2 px-4 py-3 border-b font-medium; /* Combined title styles, adjusted padding */
 }
 
+/* Color variants for Title/Body structure */
+.etfswui-alert-with-details.etfswui-alert-success {
+    @apply ring-green-200/70 dark:ring-green-900/40; /* Keep original ring for this variant */
+}
 .etfswui-alert-title-success {
-    @apply text-green-800 dark:text-green-300
-    border-green-100 dark:border-green-900/40;
+    @apply text-green-900 bg-green-50 border-green-100 dark:bg-green-900/30 dark:border-green-900/40 dark:text-green-100; /* Keep original colors */
+}
+.etfswui-alert-body-success { /* Padding is already on .etfswui-alert-body */
+    @apply text-sm text-green-700 dark:text-green-200; /* Use text-sm like target */
 }
 
+.etfswui-alert-with-details.etfswui-alert-info { /* Assuming info follows same pattern */
+    @apply ring-blue-200/70 dark:ring-blue-900/40;
+}
 .etfswui-alert-title-info {
-    @apply text-blue-800 dark:text-blue-300
-    border-blue-100 dark:border-blue-900/40;
+    @apply text-blue-900 bg-blue-50 border-blue-100 dark:bg-blue-900/30 dark:border-blue-900/40 dark:text-blue-100;
+}
+.etfswui-alert-body-info { 
+    @apply text-sm text-blue-700 dark:text-blue-200;
 }
 
+.etfswui-alert-with-details.etfswui-alert-danger {
+     @apply ring-danger-200/70 dark:ring-danger-900/40;
+}
 .etfswui-alert-title-danger {
-    @apply text-danger-800 dark:text-danger-300
-    border-danger-100 dark:border-danger-900/40;
+    @apply text-danger-900 bg-danger-50 border-danger-100 dark:bg-danger-900/20 dark:border-danger-900/40 dark:text-danger-100;
 }
-
-.etfswui-alert-body {
-    @apply p-6;
-}
-
-.etfswui-alert-body-success {
-    @apply text-green-700 dark:text-green-200;
-}
-
-.etfswui-alert-body-info {
-    @apply text-blue-700 dark:text-blue-200;
-}
-
 .etfswui-alert-body-danger {
-    @apply text-danger-700 dark:text-danger-200;
+    @apply text-sm text-danger-700 dark:text-danger-200;
+}
+
+/* Dropdown styles (used in small viewport nav, potentially reusable) */
+.etfswui-dropdown-header {
+    @apply block px-4 py-2 text-xs font-medium text-gray-500 dark:text-dark-400 uppercase tracking-wider;
+}
+
+.etfswui-dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-700 dark:text-dark-100
+    hover:bg-gray-100 hover:text-gray-900
+    dark:hover:bg-dark-700 dark:hover:text-dark-50
+    cursor-pointer no-underline hover:no-underline
+    transition-all duration-150;
+}
+
+.etfswui-dropdown-item-active {
+    @apply block px-4 py-2 text-sm font-semibold
+    bg-gray-100 text-gray-900
+    dark:bg-dark-700 dark:text-dark-50
+    cursor-pointer no-underline hover:no-underline
+    transition-all duration-150;
+}
+
+.etfswui-dropdown-divider {
+    @apply h-px bg-gray-200 dark:bg-dark-700 my-1;
 }

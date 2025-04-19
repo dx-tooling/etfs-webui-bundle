@@ -2,7 +2,11 @@ import { Controller } from "@hotwired/stimulus";
 import { enter, leave } from "../utils/el-transition.js";
 
 export class MainNavigationController extends Controller {
-    static targets = ["mainNavigationSmallViewportOutermostContainer", "dropdownMenu"];
+    static targets = [
+        "mainNavigationSmallViewportOutermostContainer",
+        "dropdownMenu",
+        "dropdownToggleButtonIcon"
+    ];
 
     static values = {
         isOpen: { type: Boolean, default: false },
@@ -86,6 +90,14 @@ export class MainNavigationController extends Controller {
             if (!contentDiv || !contentDiv.contains(event.target)) {
                 this.closeMobileSidebar();
             }
+        }
+    }
+
+    dropdownOpenValueChanged(value) {
+        // Target indices: 0 = hamburger, 1 = close
+        if (this.hasDropdownToggleButtonIconTargets) {
+            this.dropdownToggleButtonIconTargets[0].classList.toggle("hidden", value);
+            this.dropdownToggleButtonIconTargets[1].classList.toggle('hidden', !value);
         }
     }
 }

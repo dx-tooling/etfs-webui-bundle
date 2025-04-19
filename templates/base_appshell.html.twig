@@ -21,8 +21,9 @@
         // Check for dark mode preference and set CSS variables
         function updateHeaderTheme() {
             const isDark = document.documentElement.classList.contains('dark');
-            document.documentElement.style.setProperty('--header-bg', isDark ? '#27272a' : '#fff');
-            document.documentElement.style.setProperty('--header-gradient-start', isDark ? 'hsl(240deg 4% 16%)' : 'hsl(0deg 0% 95%)');
+            // Simpler header background - remove CSS vars for now
+            // document.documentElement.style.setProperty('--header-bg', isDark ? '#1f2937' : '#fff'); // gray-800
+            // document.documentElement.style.setProperty('--header-gradient-start', isDark ? '#374151' : '#f3f4f6'); // gray-700 : gray-100
         }
 
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -35,7 +36,7 @@
     </script>
 </head>
 
-<body class="h-full dark:text-gray-100">
+<body class="h-full bg-secondary-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
 <div {{ stimulus_controller('webuiMainNavigation') }} class="min-h-screen">
     {% block navigation %}
         {{ component('webui|main_navigation|small_viewport|appshell') }}
@@ -43,41 +44,41 @@
     {% endblock %}
 
     <div class="lg:pl-72 flex-1">
-        <header class="sticky top-0 z-40 bg-white/80 dark:bg-dark-900/80 backdrop-blur-2xl border-b border-gray-100 dark:border-dark-800">
+        {# Simpler header style, closer to target's general card/section look #}
+        <header class="sticky top-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
             <div class="flex h-16 items-center gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:px-8 w-full">
                 {% block header_left %}
                     {# Empty block for custom left header content, hamburger moved to right #}
                 {% endblock %}
 
-                <div class="flex flex-1 justify-end gap-4">
+                <div class="flex flex-1 justify-end gap-4 items-center">
                     {% block header_right %}
-                        {# Mobile menu toggle - only shown on small viewports #}
-                        <button type="button"
-                                class="lg:hidden rounded-md p-2 text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/10"
-                                {{ stimulus_action('webuiMainNavigation', 'toggleMobileSidebar', 'click') }}
-                        >
-                            <span class="sr-only">Zeige Navigation</span>
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-                            </svg>
-                        </button>
-
+                        {# Dark mode toggle - Styled like target #}
                         <button
                             type="button"
                             onclick="toggleDarkMode()"
-                            class="rounded-full p-2 text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/10"
+                            class="rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
                         >
-                            <svg class="hidden dark:block h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            <svg class="hidden dark:block h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
                             </svg>
-                            <svg class="block dark:hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                            </svg>
+                             <svg class="block dark:hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                             </svg>
                         </button>
 
-                        {% block notifications %}
-                            {{ component('common|presentation|app_notifications_widget') }}
-                        {% endblock %}
+                        {% block notifications %}{% endblock %}
+
+                        {# Mobile menu toggle - Styled like theme toggle, moved to end #}
+                        <button type="button"
+                                class="lg:hidden rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
+                                {{ stimulus_action('webuiMainNavigation', 'toggleMobileSidebar', 'click') }}
+                        >
+                            <span class="sr-only">Show navigation</span>
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                            </svg>
+                        </button>
                     {% endblock %}
                 </div>
             </div>
@@ -86,24 +87,25 @@
         <main class="py-10 w-full">
             <div class="px-4 sm:px-6 lg:px-8 w-full">
                 {% block flash_messages %}
+                    {# Updated flash messages to match target alert styles #}
                     {% set flashes = app.flashes %}
                     {% if flashes|length > 0 %}
-                        <div class="flex flex-col gap-4">
+                        <div class="space-y-4 mb-8">
                             {% for type, messages in flashes %}
                                 {% for message in messages %}
+                                    {% set alert_classes = 'p-4 rounded-md border text-sm font-medium' %}
                                     {% if type is same as 'success' %}
-                                        <div class="bg-green-100 px-2.5 py-2 rounded-md ring-1 ring-green-300 text-green-950 mb-8">
-                                            {{ message }}
-                                        </div>
+                                        {% set alert_classes = alert_classes ~ ' bg-green-50 border-green-300 dark:bg-green-900/30 dark:border-green-700/50 text-green-800 dark:text-green-200' %}
                                     {% elseif type is same as 'warning' %}
-                                        <div class="bg-amber-100 px-2.5 py-2 rounded-md ring-1 ring-amber-300 text-amber-950 mb-8">
-                                            {{ message }}
-                                        </div>
+                                        {% set alert_classes = alert_classes ~ ' bg-yellow-50 border-yellow-300 dark:bg-yellow-900/30 dark:border-yellow-700/50 text-yellow-800 dark:text-yellow-200' %}
                                     {% elseif type is same as 'error' or type is same as 'danger' %}
-                                        <div class="bg-red-100 px-2.5 py-2 rounded-md ring-1 ring-red-300 text-red-950 mb-8" data-testid="flash-message-error">
-                                            {{ message }}
-                                        </div>
+                                        {% set alert_classes = alert_classes ~ ' bg-red-50 border-red-300 dark:bg-red-900/30 dark:border-red-700/50 text-red-800 dark:text-red-200' %}
+                                    {% else %} {# Default to info style #}
+                                        {% set alert_classes = alert_classes ~ ' bg-blue-50 border-blue-300 dark:bg-blue-900/30 dark:border-blue-700/50 text-blue-800 dark:text-blue-200' %}
                                     {% endif %}
+                                    <div class="{{ alert_classes }}" {% if type is same as 'error' or type is same as 'danger' %}data-testid="flash-message-error"{% endif %}>
+                                        {{ message }}
+                                    </div>
                                 {% endfor %}
                             {% endfor %}
                         </div>
@@ -127,7 +129,7 @@ function toggleDarkMode() {
         document.documentElement.classList.add('dark')
         localStorage.theme = 'dark'
     }
-    updateHeaderTheme();
+    // updateHeaderTheme(); // Header theme vars removed for simplicity
 }
 </script>
 </body>

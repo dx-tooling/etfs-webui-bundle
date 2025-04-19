@@ -18,25 +18,27 @@
     {% endblock %}
 </head>
 
-<body class="h-full dark:text-gray-100">
-    <div {{ stimulus_controller('webuiMainNavigation') }} class="min-h-screen">
-        <header class="w-full bg-white dark:bg-dark-800 border-b border-gray-200 dark:border-dark-700">
-            <div class="flex h-16 items-center justify-between px-0">
+<body class="h-full bg-secondary-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div {{ stimulus_controller('webuiMainNavigation') }} class="min-h-screen flex flex-col">
+        <header class="w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center flex-shrink-0 mr-6">
                     {% block nav_logo %}
+                        <span class="text-xl font-bold text-gray-900 dark:text-white">BrandLogo</span>
+                    {% endblock %}
                 </div>
 
                 {# Large viewport navigation #}
                 {{ component('webui|main_navigation|large_viewport|fullcontent') }}
 
-                {# Small viewport menu button - only shown on small viewports #}
+                {# Small viewport menu button - Styled subtly like theme toggle #}
                 <div class="lg:hidden">
                     <button type="button"
-                            class="rounded-md p-2 text-black dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-dark-700"
+                            class="rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
                             {{ stimulus_action('webuiMainNavigation', 'toggleMobileSidebar', 'click') }}
                     >
-                        <span class="sr-only">Zeige Navigation</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <span class="sr-only">Show navigation</span>
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                         </svg>
                     </button>
@@ -47,24 +49,27 @@
         {# Small viewport navigation overlay #}
         {{ component('webui|main_navigation|small_viewport|fullcontent') }}
 
-        <main class="py-10">
+        <main class="py-10 flex-grow">
             <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 {% block flash_messages %}
                     {% set flashes = app.flashes %}
                     {% if flashes|length > 0 %}
-                        <div class="flex flex-col gap-4">
+                        <div class="space-y-4 mb-8">
                             {% for type, messages in flashes %}
                                 {% for message in messages %}
+                                    {% set alert_classes = 'p-4 rounded-md border text-sm font-medium' %}
                                     {% if type is same as 'success' %}
-                                        <div class="bg-green-100 px-2.5 py-2 rounded-md ring-1 ring-green-300 text-green-950 mb-8">
-                                            {{ message }}
-                                        </div>
+                                        {% set alert_classes = alert_classes ~ ' bg-green-50 border-green-300 dark:bg-green-900/30 dark:border-green-700/50 text-green-800 dark:text-green-200' %}
+                                    {% elseif type is same as 'warning' %}
+                                        {% set alert_classes = alert_classes ~ ' bg-yellow-50 border-yellow-300 dark:bg-yellow-900/30 dark:border-yellow-700/50 text-yellow-800 dark:text-yellow-200' %}
+                                    {% elseif type is same as 'error' or type is same as 'danger' %}
+                                        {% set alert_classes = alert_classes ~ ' bg-red-50 border-red-300 dark:bg-red-900/30 dark:border-red-700/50 text-red-800 dark:text-red-200' %}
+                                    {% else %} {# Default to info style #}
+                                        {% set alert_classes = alert_classes ~ ' bg-blue-50 border-blue-300 dark:bg-blue-900/30 dark:border-blue-700/50 text-blue-800 dark:text-blue-200' %}
                                     {% endif %}
-                                    {% if type is same as 'warning' %}
-                                        <div class="bg-amber-100 px-2.5 py-2 rounded-md ring-1 ring-amber-300 text-amber-950 mb-8">
-                                            {{ message }}
-                                        </div>
-                                    {% endif %}
+                                    <div class="{{ alert_classes }}">
+                                        {{ message }}
+                                    </div>
                                 {% endfor %}
                             {% endfor %}
                         </div>
@@ -77,9 +82,15 @@
             </div>
         </main>
 
-        <!-- Footer - Always Dark, Full Width -->
-        <footer class="bg-[#171717] text-gray-400 pt-8 pb-6 px-4 sm:px-6 lg:px-8">
-            {% block footer %}{% endblock %}
+        {# Footer - Styled like target's footer #}
+        <footer class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16 py-8">
+            <div class="container mx-auto px-4 text-center text-sm text-gray-600 dark:text-gray-400">
+                {% block footer %}
+                    &copy; {{ "now"|date("Y") }} Your Company. All rights reserved.
+                    {# Add links as needed #}
+                    {# | <a href="#" class="hover:underline">Privacy Policy</a> #}
+                {% endblock %}
+            </div>
         </footer>
     </div>
 </body>

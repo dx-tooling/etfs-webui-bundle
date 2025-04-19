@@ -24,13 +24,13 @@
     SOFTWARE.
  */
 export async function enter(element, transitionName = null) {
-    element.classList.remove("hidden");
+    element.removeAttribute("hidden");
     await transition("enter", element, transitionName);
 }
 
 export async function leave(element, transitionName = null) {
     await transition("leave", element, transitionName);
-    element.classList.add("hidden");
+    element.setAttribute("hidden", true);
 }
 
 export async function toggle(element, transitionName = null) {
