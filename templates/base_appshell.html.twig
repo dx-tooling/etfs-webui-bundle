@@ -45,6 +45,9 @@
         <header class="sticky top-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
             <div class="flex h-16 items-center gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:px-8 w-full">
                 {% block header_left %}
+                    <div class="lg:hidden"> {# Show logo only on small screens here #}
+                         {{ component('webui|brand_logo') }}
+                    </div>
                 {% endblock %}
 
                 <div class="flex flex-1 justify-end gap-4 items-center">

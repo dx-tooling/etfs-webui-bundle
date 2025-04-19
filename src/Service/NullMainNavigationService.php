@@ -14,7 +14,7 @@ readonly class NullMainNavigationService extends AbstractMainNavigationService
             sprintf(
                 "No implementation of %s found.\n\n" .
                 "The WebuiBundle requires you to provide a service class that extends %s.\n" .
-                "Please create a class that extends this abstract service and implements the required navigation methods.\n\n" .
+                "Please create a class that extends this abstract service and implements the required navigation methods (getPrimaryMainNavigationEntries, getBrandLogoHtml, etc.).\n\n" .
                 "Example:\n" .
                 "namespace App\\Service;\n\n" .
                 "use EnterpriseToolingForSymfony\\WebuiBundle\\Service\\AbstractMainNavigationService;\n\n" .
@@ -25,6 +25,7 @@ readonly class NullMainNavigationService extends AbstractMainNavigationService
                 "        // Implement your navigation logic here\n" .
                 "        return [];\n" .
                 "    }\n" .
+                "    public function getBrandLogoHtml(): string { return \'<a href=\"\/\">MyApp</a>\'; }\n" .
                 "    // ... implement other required methods\n" .
                 '}',
                 AbstractMainNavigationService::class,
@@ -35,17 +36,17 @@ readonly class NullMainNavigationService extends AbstractMainNavigationService
 
     public function getPrimaryMainNavigationTitle(): string
     {
-        return 'Primary';
+        return '';
     }
 
     public function getSecondaryMainNavigationTitle(): string
     {
-        return 'Secondary';
+        return '';
     }
 
     public function getTertiaryMainNavigationTitle(): string
     {
-        return 'Tertiary';
+        return '';
     }
 
     public function getPrimaryMainNavigationEntries(): array
@@ -63,9 +64,14 @@ readonly class NullMainNavigationService extends AbstractMainNavigationService
         return [];
     }
 
+    public function getBrandLogoHtml(): string
+    {
+        return '<span class="text-xl font-bold text-gray-900 dark:text-white">Logo</span>';
+    }
+
     public function getDropdownTitle(): string
     {
-        return 'Dropdown';
+        return '';
     }
 
     public function getDropdownSvgIcon(): string

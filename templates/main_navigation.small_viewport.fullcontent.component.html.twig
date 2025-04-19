@@ -32,13 +32,13 @@
             </button>
         </div>
 
-        {# Actual Sidebar Content (Scrollable) #}
-        <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 pt-16">
-            {# Logo Area #}
-            <div class="flex h-16 shrink-0 items-center text-primary-600 dark:text-primary-400">
-                <span class="text-xl font-bold">BrandLogo</span>
-            </div>
+        {# Logo Area - Positioned at top like header #}
+        <div class="flex h-16 shrink-0 items-center px-6"> {# Use px-6 to match content padding #}
+             {{ component('webui|brand_logo') }}
+        </div>
 
+        {# Navigation Content (Scrollable) - Removed pt-16 #}
+        <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4">
             {# Navigation structure #}
             <nav class="flex flex-1 flex-col">
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">

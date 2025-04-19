@@ -38,6 +38,8 @@ abstract readonly class AbstractMainNavigationService
      */
     abstract public function getTertiaryMainNavigationEntries(): array;
 
+    abstract public function getBrandLogoHtml(): string;
+
     /**
      * The following three functions are only relevant on "fullcontent" pages,
      * and only on the large_viewport variant ("desktop").
