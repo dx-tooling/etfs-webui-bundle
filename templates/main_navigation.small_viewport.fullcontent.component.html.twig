@@ -1,0 +1,73 @@
+{# @var this \EnterpriseToolingForSymfony\WebuiBundle\Component\MainNavigationSmallViewportFullcontentComponent #}
+<div
+        data-testid="main-navigation-small-viewport"
+        class="relative z-50 hidden"
+        role="dialog"
+        aria-modal="true"
+        {{ stimulus_target('webuiMainNavigation', 'mainNavigationSmallViewportOutermostContainer') }}
+        data-transition-enter="transition ease-in-out duration-150"
+        data-transition-enter-start="opacity-0"
+        data-transition-enter-end="opacity-100"
+        data-transition-leave="transition ease-in-out duration-150"
+        data-transition-leave-start="opacity-100"
+        data-transition-leave-end="opacity-0"
+>
+    {# Backdrop overlay - click to close #}
+    <div class="fixed inset-0 backdrop" {{ stimulus_action('webuiMainNavigation', 'closeMobileSidebarExplicit', 'click') }}></div>
+
+    {# Content container - positioned like the large viewport dropdown #}
+    <div class="absolute right-0 mt-0 w-64 rounded-sm bg-white dark:bg-dark-800 ring-1 ring-gray-200 dark:ring-dark-700 shadow-lg">
+        <div class="p-2 space-y-1">
+            {# Primary navigation entries #}
+            {% if this.mainNavigationService.primaryMainNavigationEntries|length > 0 %}
+                <div class="px-3 py-1 text-base font-normal text-gray-500 dark:text-gray-400">
+                    {{ this.mainNavigationService.primaryMainNavigationTitle }}
+                </div>
+                {% for entry in this.mainNavigationService.primaryMainNavigationEntries %}
+                    {% if entry.isSeparator %}
+                        <div class="h-px bg-gray-200 dark:bg-dark-700 my-1"></div>
+                    {% else %}
+                        <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
+                           class="pl-7 group flex items-center gap-x-2 rounded-sm px-3 py-2 text-sm leading-6 font-thinner !text-black dark:!text-white {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
+                            {{ entry.title }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {# Secondary navigation entries #}
+            {% if this.mainNavigationService.finalSecondaryMainNavigationEntries|length > 0 %}
+                <div class="px-3 py-1 text-base font-normal text-gray-500 dark:text-gray-400">
+                    {{ this.mainNavigationService.secondaryMainNavigationTitle }}
+                </div>
+                {% for entry in this.mainNavigationService.finalSecondaryMainNavigationEntries %}
+                    {% if entry.isSeparator %}
+                        <div class="h-px bg-gray-200 dark:bg-dark-700 my-1"></div>
+                    {% else %}
+                        <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
+                           class="pl-7 group flex items-center gap-x-2 rounded-sm px-3 py-2 text-sm leading-6 font-thinner !text-black dark:!text-white {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
+                            {{ entry.title }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {# Tertiary navigation entries #}
+            {% if this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}
+                <div class="px-3 py-1 text-base font-normal text-gray-500 dark:text-gray-400">
+                    {{ this.mainNavigationService.tertiaryMainNavigationTitle }}
+                </div>
+                {% for entry in this.mainNavigationService.tertiaryMainNavigationEntries %}
+                    {% if entry.isSeparator %}
+                        <div class="h-px bg-gray-200 dark:bg-dark-700 my-1"></div>
+                    {% else %}
+                        <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
+                           class="pl-7 group flex items-center gap-x-2 rounded-sm px-3 py-2 text-sm leading-6 font-thinner !text-black dark:!text-white {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
+                            {{ entry.title }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>

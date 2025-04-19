@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    {% if app.request.server.get('APP_ENV') is not same as 'prod' %}
+        <meta name="x-app-env" content="{{ app.request.server.get('APP_ENV') }}">
+    {% endif %}
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+
+    <script>
+        // Check for dark mode preference and set CSS variables
+        function updateHeaderTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            document.documentElement.style.setProperty('--header-bg', isDark ? '#27272a' : '#fff');
+            document.documentElement.style.setProperty('--header-gradient-start', isDark ? 'hsl(240deg 4% 16%)' : 'hsl(0deg 0% 95%)');
+        }
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            updateHeaderTheme();
+        } else {
+            document.documentElement.classList.remove('dark');
+            updateHeaderTheme();
+        }
+    </script>
+</head>
+
+<body class="h-full dark:text-gray-100">
+<div {{ stimulus_controller('webuiMainNavigation') }} class="min-h-screen">
+    {% block navigation %}
+        {{ component('webui|main_navigation|small_viewport|appshell') }}
+        {{ component('webui|main_navigation|large_viewport|appshell') }}
+    {% endblock %}
+
+    <div class="lg:pl-72 flex-1">
+        <header class="sticky top-0 z-40 bg-white/80 dark:bg-dark-900/80 backdrop-blur-2xl border-b border-gray-100 dark:border-dark-800">
+            <div class="flex h-16 items-center gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:px-8 w-full">
+                {% block header_left %}
+                    {# Empty block for custom left header content, hamburger moved to right #}
+                {% endblock %}
+
+                <div class="flex flex-1 justify-end gap-4">
+                    {% block header_right %}
+                        {# Mobile menu toggle - only shown on small viewports #}
+                        <button type="button"
+                                class="lg:hidden rounded-md p-2 text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/10"
+                                {{ stimulus_action('webuiMainNavigation', 'toggleMobileSidebar', 'click') }}
+                        >
+                            <span class="sr-only">Zeige Navigation</span>
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                            </svg>
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="toggleDarkMode()"
+                            class="rounded-full p-2 text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/10"
+                        >
+                            <svg class="hidden dark:block h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                            <svg class="block dark:hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                            </svg>
+                        </button>
+
+                        {% block notifications %}
+                            {{ component('common|presentation|app_notifications_widget') }}
+                        {% endblock %}
+                    {% endblock %}
+                </div>
+            </div>
+        </header>
+
+        <main class="py-10 w-full">
+            <div class="px-4 sm:px-6 lg:px-8 w-full">
+                {% block flash_messages %}
+                    {% set flashes = app.flashes %}
+                    {% if flashes|length > 0 %}
+                        <div class="flex flex-col gap-4">
+                            {% for type, messages in flashes %}
+                                {% for message in messages %}
+                                    {% if type is same as 'success' %}
+                                        <div class="bg-green-100 px-2.5 py-2 rounded-md ring-1 ring-green-300 text-green-950 mb-8">
+                                            {{ message }}
+                                        </div>
+                                    {% elseif type is same as 'warning' %}
+                                        <div class="bg-amber-100 px-2.5 py-2 rounded-md ring-1 ring-amber-300 text-amber-950 mb-8">
+                                            {{ message }}
+                                        </div>
+                                    {% elseif type is same as 'error' or type is same as 'danger' %}
+                                        <div class="bg-red-100 px-2.5 py-2 rounded-md ring-1 ring-red-300 text-red-950 mb-8" data-testid="flash-message-error">
+                                            {{ message }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+
+                <div class="content-fade-up">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>
+function toggleDarkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark')
+        localStorage.theme = 'light'
+    } else {
+        document.documentElement.classList.add('dark')
+        localStorage.theme = 'dark'
+    }
+    updateHeaderTheme();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+    "name": "enterprise-tooling-for-symfony/webui-bundle",
+    "require": {
+        "php": "^8.4",
+        "symfony/dependency-injection": "^7.2",
+        "symfony/config": "^7.2",
+        "symfony/ux-live-component": "^2.22",
+        "symfony/asset-mapper": "^7.2",
+        "symfony/asset": "^7.2",
+        "symfony/framework-bundle": "^7.2",
+        "symfony/twig-bundle": "^7.2",
+        "symfony/stimulus-bundle": "^2.22",
+        "symfony/ux-twig-component": "^2.23"
+    },
+    "require-dev": {
+        "erickskrauch/php-cs-fixer-custom-fixers": "^1.3",
+        "friendsofphp/php-cs-fixer": "^3.65",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpunit/phpunit": "^11.4",
+        "doctrine/orm": "^3.3",
+        "doctrine/dbal": "^3.9.4",
+        "symfony/doctrine-bridge": "^7.2",
+        "symfony/uid": "^7.2"
+    },
+    "suggest": {},
+    "conflict": {},
+    "autoload": {
+        "psr-4": {
+            "EnterpriseToolingForSymfony\\WebuiBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EnterpriseToolingForSymfony\\WebuiBundle\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
+}

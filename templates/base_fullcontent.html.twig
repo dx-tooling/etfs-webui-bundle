@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    {% if app.request.server.get('APP_ENV') is not same as 'prod' %}
+        <meta name="x-app-env" content="{{ app.request.server.get('APP_ENV') }}">
+    {% endif %}
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+
+<body class="h-full dark:text-gray-100">
+    <div {{ stimulus_controller('webuiMainNavigation') }} class="min-h-screen">
+        <header class="w-full bg-white dark:bg-dark-800 border-b border-gray-200 dark:border-dark-700">
+            <div class="flex h-16 items-center justify-between px-0">
+                <div class="flex items-center flex-shrink-0 mr-6">
+                    {% block nav_logo %}
+                </div>
+
+                {# Large viewport navigation #}
+                {{ component('webui|main_navigation|large_viewport|fullcontent') }}
+
+                {# Small viewport menu button - only shown on small viewports #}
+                <div class="lg:hidden">
+                    <button type="button"
+                            class="rounded-md p-2 text-black dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-dark-700"
+                            {{ stimulus_action('webuiMainNavigation', 'toggleMobileSidebar', 'click') }}
+                    >
+                        <span class="sr-only">Zeige Navigation</span>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        {# Small viewport navigation overlay #}
+        {{ component('webui|main_navigation|small_viewport|fullcontent') }}
+
+        <main class="py-10">
+            <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+                {% block flash_messages %}
+                    {% set flashes = app.flashes %}
+                    {% if flashes|length > 0 %}
+                        <div class="flex flex-col gap-4">
+                            {% for type, messages in flashes %}
+                                {% for message in messages %}
+                                    {% if type is same as 'success' %}
+                                        <div class="bg-green-100 px-2.5 py-2 rounded-md ring-1 ring-green-300 text-green-950 mb-8">
+                                            {{ message }}
+                                        </div>
+                                    {% endif %}
+                                    {% if type is same as 'warning' %}
+                                        <div class="bg-amber-100 px-2.5 py-2 rounded-md ring-1 ring-amber-300 text-amber-950 mb-8">
+                                            {{ message }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+
+                <div class="content-fade-up">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer - Always Dark, Full Width -->
+        <footer class="bg-[#171717] text-gray-400 pt-8 pb-6 px-4 sm:px-6 lg:px-8">
+            {% block footer %}{% endblock %}
+        </footer>
+    </div>
+</body>
+</html>
