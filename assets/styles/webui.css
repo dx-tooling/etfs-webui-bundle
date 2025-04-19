@@ -71,7 +71,7 @@ body {
 /* Add styles for active state icon */
 .etfswui-nav-secondary-item-active .etfswui-nav-secondary-icon {
     @apply border-gray-300 dark:border-dark-600
-    text-gray-700 dark:text-dark-200;
+    text-sm text-danger-700 dark:text-danger-200;
 }
 
 .etfswui-nav-tertiary-item {
@@ -98,7 +98,7 @@ body {
 
 /* Gradient H1 - Base Styles */
 .etfswui-h1-gradient {
-     @apply text-4xl font-extrabold tracking-tight; /* Size and weight, no color */
+    @apply text-4xl font-extrabold tracking-tight; /* Size and weight, no color */
 }
 /* Gradient H1 - Span for Gradient Effect */
 .etfswui-h1-gradient-span {
@@ -540,9 +540,9 @@ body {
     @apply text-sm font-medium text-blue-800 dark:text-blue-300; /* Adjusted color to match badge */
 }
 
-
 /* Alert with Title/Body structure */
-.etfswui-alert-with-details { /* Renamed from previous edits - reusing base alert style */
+.etfswui-alert-with-details {
+    /* Renamed from previous edits - reusing base alert style */
     @apply rounded-md p-0 overflow-hidden shadow-sm ring-1;
 }
 
@@ -557,22 +557,24 @@ body {
 .etfswui-alert-title-success {
     @apply text-green-900 bg-green-50 border-green-100 dark:bg-green-900/30 dark:border-green-900/40 dark:text-green-100; /* Keep original colors */
 }
-.etfswui-alert-body-success { /* Padding is already on .etfswui-alert-body */
+.etfswui-alert-body-success {
+    /* Padding is already on .etfswui-alert-body */
     @apply text-sm text-green-700 dark:text-green-200; /* Use text-sm like target */
 }
 
-.etfswui-alert-with-details.etfswui-alert-info { /* Assuming info follows same pattern */
+.etfswui-alert-with-details.etfswui-alert-info {
+    /* Assuming info follows same pattern */
     @apply ring-blue-200/70 dark:ring-blue-900/40;
 }
 .etfswui-alert-title-info {
     @apply text-blue-900 bg-blue-50 border-blue-100 dark:bg-blue-900/30 dark:border-blue-900/40 dark:text-blue-100;
 }
-.etfswui-alert-body-info { 
+.etfswui-alert-body-info {
     @apply text-sm text-blue-700 dark:text-blue-200;
 }
 
 .etfswui-alert-with-details.etfswui-alert-danger {
-     @apply ring-danger-200/70 dark:ring-danger-900/40;
+    @apply ring-danger-200/70 dark:ring-danger-900/40;
 }
 .etfswui-alert-title-danger {
     @apply text-danger-900 bg-danger-50 border-danger-100 dark:bg-danger-900/20 dark:border-danger-900/40 dark:text-danger-100;
@@ -582,26 +584,4 @@ body {
 }
 
 /* Dropdown styles (used in small viewport nav, potentially reusable) */
-.etfswui-dropdown-header {
-    @apply block px-4 py-2 text-xs font-medium text-gray-500 dark:text-dark-400 uppercase tracking-wider;
-}
-
-.etfswui-dropdown-item {
-    @apply block px-4 py-2 text-sm text-gray-700 dark:text-dark-100
-    hover:bg-gray-100 hover:text-gray-900
-    dark:hover:bg-dark-700 dark:hover:text-dark-50
-    cursor-pointer no-underline hover:no-underline
-    transition-all duration-150;
-}
-
-.etfswui-dropdown-item-active {
-    @apply block px-4 py-2 text-sm font-semibold
-    bg-gray-100 text-gray-900
-    dark:bg-dark-700 dark:text-dark-50
-    cursor-pointer no-underline hover:no-underline
-    transition-all duration-150;
-}
-
-.etfswui-dropdown-divider {
-    @apply h-px bg-gray-200 dark:bg-dark-700 my-1;
-}
+/* Removed unused dropdown styles */

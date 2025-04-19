@@ -31,7 +31,7 @@
                 {# Large viewport navigation #}
                 {{ component('webui|main_navigation|large_viewport|fullcontent') }}
 
-                {# Small viewport menu button - Styled subtly like theme toggle #}
+                {# Small viewport menu button #}
                 <div class="lg:hidden">
                     <button type="button"
                             class="rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
@@ -82,13 +82,12 @@
             </div>
         </main>
 
-        {# Footer - Styled like target's footer #}
+        {# Footer #}
         <footer class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16 py-8">
             <div class="container mx-auto px-4 text-center text-sm text-gray-600 dark:text-gray-400">
                 {% block footer %}
                     &copy; {{ "now"|date("Y") }} Your Company. All rights reserved.
-                    {# Add links as needed #}
-                    {# | <a href="#" class="hover:underline">Privacy Policy</a> #}
+                    {# <a href="#" class="hover:underline">Privacy Policy</a> #}
                 {% endblock %}
             </div>
         </footer>

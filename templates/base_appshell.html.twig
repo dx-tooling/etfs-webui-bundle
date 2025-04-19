@@ -18,12 +18,10 @@
     {% endblock %}
 
     <script>
-        // Check for dark mode preference and set CSS variables
+        // Check for dark mode preference
         function updateHeaderTheme() {
             const isDark = document.documentElement.classList.contains('dark');
-            // Simpler header background - remove CSS vars for now
-            // document.documentElement.style.setProperty('--header-bg', isDark ? '#1f2937' : '#fff'); // gray-800
-            // document.documentElement.style.setProperty('--header-gradient-start', isDark ? '#374151' : '#f3f4f6'); // gray-700 : gray-100
+            // Header styling simplified, CSS variables removed
         }
 
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -44,16 +42,14 @@
     {% endblock %}
 
     <div class="lg:pl-72 flex-1">
-        {# Simpler header style, closer to target's general card/section look #}
         <header class="sticky top-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
             <div class="flex h-16 items-center gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:px-8 w-full">
                 {% block header_left %}
-                    {# Empty block for custom left header content, hamburger moved to right #}
                 {% endblock %}
 
                 <div class="flex flex-1 justify-end gap-4 items-center">
                     {% block header_right %}
-                        {# Dark mode toggle - Styled like target #}
+                        {# Dark mode toggle #}
                         <button
                             type="button"
                             onclick="toggleDarkMode()"
@@ -69,7 +65,7 @@
 
                         {% block notifications %}{% endblock %}
 
-                        {# Mobile menu toggle - Styled like theme toggle, moved to end #}
+                        {# Mobile menu toggle #}
                         <button type="button"
                                 class="lg:hidden rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
                                 {{ stimulus_action('webuiMainNavigation', 'toggleMobileSidebar', 'click') }}
@@ -87,7 +83,6 @@
         <main class="py-10 w-full">
             <div class="px-4 sm:px-6 lg:px-8 w-full">
                 {% block flash_messages %}
-                    {# Updated flash messages to match target alert styles #}
                     {% set flashes = app.flashes %}
                     {% if flashes|length > 0 %}
                         <div class="space-y-4 mb-8">
@@ -129,7 +124,6 @@ function toggleDarkMode() {
         document.documentElement.classList.add('dark')
         localStorage.theme = 'dark'
     }
-    // updateHeaderTheme(); // Header theme vars removed for simplicity
 }
 </script>
 </body>

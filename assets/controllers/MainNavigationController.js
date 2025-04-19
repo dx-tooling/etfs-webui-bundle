@@ -2,11 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { enter, leave } from "../utils/el-transition.js";
 
 export class MainNavigationController extends Controller {
-    static targets = [
-        "mainNavigationSmallViewportOutermostContainer",
-        "dropdownMenu",
-        "dropdownToggleButtonIcon"
-    ];
+    static targets = ["mainNavigationSmallViewportOutermostContainer", "dropdownMenu", "dropdownToggleButtonIcon"];
 
     static values = {
         isOpen: { type: Boolean, default: false },
@@ -94,10 +90,9 @@ export class MainNavigationController extends Controller {
     }
 
     dropdownOpenValueChanged(value) {
-        // Target indices: 0 = hamburger, 1 = close
         if (this.hasDropdownToggleButtonIconTargets) {
             this.dropdownToggleButtonIconTargets[0].classList.toggle("hidden", value);
-            this.dropdownToggleButtonIconTargets[1].classList.toggle('hidden', !value);
+            this.dropdownToggleButtonIconTargets[1].classList.toggle("hidden", !value);
         }
     }
 }

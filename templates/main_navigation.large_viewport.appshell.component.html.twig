@@ -5,35 +5,26 @@
         class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col lg:flex-shrink-0"
         data-testid="sidebar-desktop"
 >
-    {# Background & Border Styling - Using target theme colors #}
-    {# You might want to define etfswui-nav-bg and etfswui-nav-border in your CSS #}
-    {# Example @apply rules: #}
-    {# .etfswui-nav-bg { @apply bg-white dark:bg-gray-800; } #}
-    {# .etfswui-nav-border { @apply border-r border-gray-200 dark:border-gray-700; } #}
+    {# Sidebar background #}
     <div class="flex grow flex-col gap-y-6 overflow-y-auto etfswui-nav-bg etfswui-nav-border px-4 pb-4">
         <div class="flex h-16 shrink-0 items-center text-primary-600 dark:text-primary-400">
-            {# Logo area - Consider adding your logo here #}
+            {# Logo area #}
             <span class="text-xl font-bold">BrandLogo</span>
         </div>
         <nav class="flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col gap-y-7">
                 {# Primary Navigation Group #}
                 <li>
-                    {# Assuming etfswui-nav-group provides spacing/layout #}
                     <ul role="list" class="etfswui-nav-group space-y-1">
                         {% for entry in this.mainNavigationService.primaryMainNavigationEntries %}
                             {% if entry.isSeparator %}
                                 <li><div class="my-2 h-px bg-gray-200 dark:bg-gray-700"></div></li>
                             {% else %}
                                 <li>
-                                    {# Link Styling #}
-                                    {# Example @apply rules: #}
-                                    {# .etfswui-nav-link { @apply text-gray-700 hover:text-primary-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700/50; } #}
-                                    {# .etfswui-nav-link-active { @apply bg-gray-100 text-primary-600 dark:bg-gray-700 dark:text-white; } #}
+                                    {# Link Styling defined in webui.css #}
                                     <a {% if entry.url %}href="{{ entry.url }}"{% endif %}
                                        class="group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {{ entry.isActive ? 'etfswui-nav-link-active' : 'etfswui-nav-link' }}">
                                         {% if entry.iconSvg %}
-                                            {# Icon inherits text color via stroke="currentColor" #}
                                             <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                 {{ entry.iconSvg|raw }}
                                             </svg>
@@ -49,8 +40,6 @@
                 {# Secondary Navigation Group #}
                 {% if this.mainNavigationService.finalSecondaryMainNavigationEntries|length > 0 %}
                     <li>
-                        {# Section Title Styling #}
-                        {# Example @apply rule: .etfswui-nav-section-title { @apply text-xs font-semibold leading-6 text-gray-400 dark:text-gray-500; } #}
                         <div class="etfswui-nav-section-title px-2">{{ this.mainNavigationService.secondaryMainNavigationTitle }}</div>
                         <ul role="list" class="etfswui-nav-group mt-2 space-y-1">
                             {% for entry in this.mainNavigationService.finalSecondaryMainNavigationEntries %}
@@ -77,7 +66,6 @@
                 {# Tertiary Navigation Group (Pushed to bottom) #}
                 {% if this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}
                     <li class="mt-auto">
-                         {# Add title if desired: <div class="etfswui-nav-section-title px-2">{{ this.mainNavigationService.tertiaryMainNavigationTitle }}</div> #}
                         <ul role="list" class="etfswui-nav-group space-y-1 {% if this.mainNavigationService.tertiaryMainNavigationTitle %}mt-2{% endif %}">
                             {% for entry in this.mainNavigationService.tertiaryMainNavigationEntries %}
                                 {% if entry.isSeparator %}

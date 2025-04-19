@@ -1,11 +1,11 @@
 {# @var this \EnterpriseToolingForSymfony\WebuiBundle\Component\MainNavigationSmallViewportFullcontentComponent #}
 {#
-  This component renders the navigation menu for small viewports in the 'fullcontent' layout.
-  It appears as a full-screen opaque overlay, styled like the large viewport appshell sidebar.
+  Renders the navigation menu for small viewports in the 'fullcontent' layout
+  as a full-screen overlay.
 #}
 <div
         data-testid="main-navigation-small-viewport"
-        class="fixed inset-0 z-50 lg:hidden" {# Removed flex #}
+        class="fixed inset-0 z-50 lg:hidden"
         role="dialog"
         aria-modal="true"
         {{ stimulus_target('webuiMainNavigation', 'mainNavigationSmallViewportOutermostContainer') }}
@@ -15,14 +15,14 @@
         data-transition-leave="transition-opacity ease-linear duration-200"
         data-transition-leave-start="opacity-100"
         data-transition-leave-end="opacity-0"
-        hidden {# Start hidden, controller will toggle #}
+        hidden
 >
     {# Full screen opaque content container #}
     <div class="relative flex flex-col w-full h-full etfswui-nav-bg">
-        {# Close button container - Positioned like header button #}
+        {# Close button container #}
         <div class="absolute top-0 right-0 h-16 flex items-center px-4 sm:px-6 z-10">
             <button type="button"
-                    class="rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none" {# Match hamburger style #}
+                    class="rounded-full w-9 h-9 flex items-center justify-center text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none"
                     {{ stimulus_action('webuiMainNavigation', 'closeMobileSidebar', 'click') }}
             >
                 <span class="sr-only">Close menu</span>
@@ -32,14 +32,14 @@
             </button>
         </div>
 
-        {# Actual Sidebar Content (Scrollable) - Added pt-16 #}
+        {# Actual Sidebar Content (Scrollable) #}
         <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 pt-16">
-            {# Logo Area (Optional, mirrors large viewport) #}
+            {# Logo Area #}
             <div class="flex h-16 shrink-0 items-center text-primary-600 dark:text-primary-400">
-                <span class="text-xl font-bold">BrandLogo</span> {# Make sure this matches base_fullcontent.html.twig if needed #}
+                <span class="text-xl font-bold">BrandLogo</span>
             </div>
 
-            {# Navigation structure (mirrors large viewport appshell) #}
+            {# Navigation structure #}
             <nav class="flex flex-1 flex-col">
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">
                     {# Primary Navigation Group #}
@@ -91,10 +91,9 @@
                         </li>
                     {% endif %}
 
-                    {# Tertiary Navigation Group (Pushed to bottom) #}
+                    {# Tertiary Navigation Group #}
                     {% if this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}
                         <li class="mt-auto">
-                            {# Add title if desired: <div class="etfswui-nav-section-title px-2">{{ this.mainNavigationService.tertiaryMainNavigationTitle }}</div> #}
                             <ul role="list" class="etfswui-nav-group space-y-1 {% if this.mainNavigationService.tertiaryMainNavigationTitle %}mt-2{% endif %}">
                                 {% for entry in this.mainNavigationService.tertiaryMainNavigationEntries %}
                                     {% if entry.isSeparator %}
@@ -121,6 +120,5 @@
         </div>
     </div>
 
-    {# Backdrop/Overlay - Removed #}
-    {# <div class="flex-1 bg-gray-900/50 dark:bg-gray-900/80" aria-hidden="true" {{ stimulus_action('webuiMainNavigation', 'closeMobileSidebar', 'click') }}></div> #}
+    {# Removed commented out backdrop #}
 </div>

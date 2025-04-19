@@ -1,18 +1,13 @@
 {# @var this \EnterpriseToolingForSymfony\WebuiBundle\Component\MainNavigationLargeViewportFullcontentComponent #}
 
-{# This container is only shown on large viewports #}
+{# Container shown only on large viewports #}
 <div class="hidden lg:flex flex-1 items-center">
-    {# Primary navigation items - shown next to logo #}
+    {# Primary navigation items #}
     <div class="flex items-center gap-x-1 sm:gap-x-2">
-        {# Apply simpler link style, closer to target examples #}
-        {# Example @apply rules: #}
-        {# .etfswui-nav-link-fullcontent { @apply text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400; } #}
-        {# .etfswui-nav-link-fullcontent-active { @apply text-primary-600 dark:text-primary-400; } #}
         {% for entry in this.mainNavigationService.primaryMainNavigationEntries %}
             <a href="{{ entry.url }}"
                class="group flex items-center gap-x-2 rounded-md px-3 py-2 text-sm leading-6 font-medium {{ entry.isActive ? 'etfswui-nav-link-fullcontent-active' : 'etfswui-nav-link-fullcontent' }}">
                 {{ entry.title }}
-                {# Icons might look out of place with simpler text links, consider removing or styling differently #}
                 {% if entry.iconSvg %}
                     <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         {{ entry.iconSvg|raw }}
@@ -22,9 +17,9 @@
         {% endfor %}
     </div>
 
-    {# Secondary and tertiary items container - pushed to the right #}
+    {# Secondary and tertiary items container #}
     <div class="flex items-center gap-x-1 sm:gap-x-2 ml-auto">
-        {# Secondary navigation items - only shown outside dropdown if configured that way #}
+        {# Secondary navigation items (if not in dropdown) #}
         {% if not this.mainNavigationService.secondaryMainNavigationIsPartOfDropdown() %}
             {% for entry in this.mainNavigationService.finalSecondaryMainNavigationEntries %}
                 <a href="{{ entry.url }}"
@@ -39,9 +34,9 @@
             {% endfor %}
         {% endif %}
 
-        {# Dropdown for tertiary navigation (and optional secondary navigation) #}
+        {# Dropdown/Sidebar for tertiary (and optional secondary) navigation #}
         <div class="relative">
-            {# Dropdown Toggle Button - Style as subtle text/icon button #}
+            {# Dropdown Toggle Button #}
             <button type="button"
                     class="flex items-center gap-x-1.5 rounded-md px-3 py-2 text-sm leading-6 font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     {{ stimulus_action('webuiMainNavigation', 'toggleDropdownMenu', 'click') }}
@@ -57,19 +52,16 @@
                 </svg>
             </button>
 
-            {# Right-aligned Sidebar Menu (replaces dropdown) #}
+            {# Right-aligned Sidebar Menu #}
             <div class="hidden lg:fixed lg:top-16 lg:right-0 lg:z-50 lg:w-72 lg:flex-col lg:flex-shrink-0 lg:h-[calc(100vh-4rem)] etfswui-nav-bg etfswui-nav-border-left"
-                 {# Note: Visibility controlled by Stimulus toggleDropdownMenu adding/removing 'hidden' #}
                  {{ stimulus_target('webuiMainNavigation', 'dropdownMenu') }}
             >
-                {# Actual Sidebar Content (Scrollable) #}
-                <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 pt-5"> {# Added pt-5 for spacing #}
-                    {# Optional: Add close button if needed, maybe positioned top-left? For now, rely on click outside #}
-
-                    {# Navigation structure (mirrors large viewport appshell, right-aligned) #}
+                {# Sidebar Content (Scrollable) #}
+                <div class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 pt-5">
+                    {# Navigation structure #}
                     <nav class="flex flex-1 flex-col">
                         <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                            {# Include secondary navigation in dropdown if configured that way #}
+                            {# Secondary navigation (if in dropdown) #}
                             {% if this.mainNavigationService.secondaryMainNavigationIsPartOfDropdown() and this.mainNavigationService.finalSecondaryMainNavigationEntries|length > 0 %}
                                 <li>
                                     <div class="etfswui-nav-section-title px-2 text-right">{{ this.mainNavigationService.getSecondaryMainNavigationTitle() }}</div>
@@ -86,20 +78,20 @@
                                                                 {{ entry.iconSvg|raw }}
                                                             </svg>
                                                         {% endif %}
-                                                        <span class="flex-1">{{ entry.title }}</span> {# Use flex-1 to push text left #}
+                                                        <span class="flex-1">{{ entry.title }}</span>
                                                     </a>
                                                 </li>
                                             {% endif %}
                                         {% endfor %}
                                     </ul>
                                 </li>
-                                {# Add divider if both sections exist #}
+                                {# Divider #}
                                 {% if this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}
                                     <li><div class="my-2 h-px bg-gray-200 dark:bg-gray-700"></div></li>
                                 {% endif %}
                             {% endif %}
 
-                            {# Tertiary navigation entries (Pushed to bottom) #}
+                            {# Tertiary navigation entries #}
                             {% if this.mainNavigationService.tertiaryMainNavigationEntries|length > 0 %}
                                 <li class="mt-auto">
                                     <div class="etfswui-nav-section-title px-2 text-right">{{ this.mainNavigationService.getTertiaryMainNavigationTitle() }}</div>
@@ -116,7 +108,7 @@
                                                                 {{ entry.iconSvg|raw }}
                                                             </svg>
                                                         {% endif %}
-                                                        <span class="flex-1">{{ entry.title }}</span> {# Use flex-1 to push text left #}
+                                                        <span class="flex-1">{{ entry.title }}</span>
                                                     </a>
                                                 </li>
                                             {% endif %}
