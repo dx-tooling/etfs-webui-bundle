@@ -3,7 +3,7 @@
 @config "../../tailwind.config.js";
 
 body {
-    @apply text-gray-900 dark:text-gray-100 bg-[#f5f5f5] dark:bg-dark-950;
+    @apply text-dark-900 dark:text-dark-100 bg-[#f5f5f5] dark:bg-dark-950;
 }
 
 /* Navigation */
@@ -12,30 +12,30 @@ body {
 }
 
 .etfswui-nav-border {
-    @apply border-r border-gray-200/50 dark:border-dark-700/50;
+    @apply border-r border-dark-200/50 dark:border-dark-700/50;
 }
 
 .etfswui-nav-border-left {
-    @apply border-l border-gray-200/50 dark:border-dark-700/50;
+    @apply border-l border-dark-200/50 dark:border-dark-700/50;
 }
 
 .etfswui-nav-link {
-    @apply text-gray-600 dark:text-dark-300
-    hover:text-gray-900 dark:hover:text-dark-100
-    hover:bg-gray-200 dark:hover:bg-dark-700/50
+    @apply text-dark-600 dark:text-dark-300
+    hover:text-dark-900 dark:hover:text-dark-100
+    hover:bg-dark-200 dark:hover:bg-dark-700/50
     transition-all duration-150
     rounded-sm;
 }
 
 .etfswui-nav-link-active {
-    @apply bg-gray-200 dark:bg-dark-700/50
-    text-gray-900 dark:text-dark-100
+    @apply bg-dark-200 dark:bg-dark-700/50
+    text-dark-900 dark:text-dark-100
     rounded-sm;
 }
 
 /* New navigation classes */
 .etfswui-nav-section-title {
-    @apply text-xs font-semibold leading-6 text-gray-500 dark:text-dark-400 px-2 mb-2;
+    @apply text-xs font-semibold leading-6 text-dark-500 dark:text-dark-400 px-2 mb-2;
 }
 
 .etfswui-nav-group {
@@ -44,23 +44,23 @@ body {
 
 .etfswui-nav-secondary-item {
     @apply flex gap-x-3 rounded-sm p-2 text-sm leading-6 font-semibold
-    text-gray-500 dark:text-dark-400
-    hover:text-gray-900 dark:hover:text-dark-100
-    hover:bg-gray-200 dark:hover:bg-dark-700/50
+    text-dark-500 dark:text-dark-400
+    hover:text-dark-900 dark:hover:text-dark-100
+    hover:bg-dark-200 dark:hover:bg-dark-700/50
     transition-all duration-150
     w-full;
 }
 
 .etfswui-nav-secondary-item-active {
-    @apply bg-gray-200 dark:bg-dark-700/50
-    text-gray-900 dark:text-dark-100;
+    @apply bg-dark-200 dark:bg-dark-700/50
+    text-dark-900 dark:text-dark-100;
 }
 
 .etfswui-nav-secondary-icon {
     @apply flex h-6 w-6 shrink-0 items-center justify-center
-    rounded-sm border border-gray-200/50 dark:border-dark-700/50
+    rounded-sm border border-dark-200/50 dark:border-dark-700/50
     bg-white dark:bg-dark-800
-    text-xs font-medium text-gray-500 dark:text-dark-400
+    text-xs font-medium text-dark-500 dark:text-dark-400
     transition-all duration-150;
 }
 
@@ -70,30 +70,30 @@ body {
 
 /* Add styles for active state icon */
 .etfswui-nav-secondary-item-active .etfswui-nav-secondary-icon {
-    @apply border-gray-300 dark:border-dark-600
+    @apply border-dark-300 dark:border-dark-600
     text-sm text-danger-700 dark:text-danger-200;
 }
 
 .etfswui-nav-tertiary-item {
     @apply flex gap-x-3 rounded-sm p-2 text-sm leading-6 font-semibold
-    text-gray-500 dark:text-dark-400
-    hover:text-gray-900 dark:hover:text-dark-100
-    hover:bg-gray-200 dark:hover:bg-dark-700/50
+    text-dark-500 dark:text-dark-400
+    hover:text-dark-900 dark:hover:text-dark-100
+    hover:bg-dark-200 dark:hover:bg-dark-700/50
     transition-all duration-150;
 }
 
 .etfswui-nav-tertiary-icon {
-    @apply h-6 w-6 shrink-0 text-gray-400 dark:text-dark-500
+    @apply h-6 w-6 shrink-0 text-dark-400 dark:text-dark-500
     transition-colors duration-150;
 }
 
 /* Typography */
 .etfswui-section-title {
-    @apply text-2xl font-semibold mb-2 text-gray-900 dark:text-dark-100;
+    @apply text-2xl font-semibold mb-2 text-dark-900 dark:text-dark-100;
 }
 
 .etfswui-h1 {
-    @apply text-4xl font-bold tracking-tight text-gray-900 dark:text-white;
+    @apply text-4xl font-bold tracking-tight text-dark-900 dark:text-white;
 }
 
 /* Gradient H1 - Base Styles */
@@ -106,23 +106,23 @@ body {
 }
 
 .etfswui-h2 {
-    @apply text-3xl font-semibold tracking-tight text-gray-800 dark:text-white;
+    @apply text-3xl font-semibold tracking-tight text-dark-800 dark:text-white;
 }
 
 .etfswui-h3 {
-    @apply text-2xl font-semibold text-gray-800 dark:text-white;
+    @apply text-2xl font-semibold text-dark-800 dark:text-white;
 }
 
 .etfswui-h4 {
-    @apply text-xl font-semibold text-gray-800 dark:text-white;
+    @apply text-xl font-semibold text-dark-800 dark:text-white;
 }
 
 .etfswui-text {
-    @apply text-base leading-relaxed text-gray-600 dark:text-gray-200;
+    @apply text-base leading-relaxed text-dark-600 dark:text-dark-200;
 }
 
 .etfswui-text-small {
-    @apply text-sm font-normal leading-5 text-gray-500 dark:text-gray-300;
+    @apply text-sm font-normal leading-5 text-dark-500 dark:text-dark-300;
 }
 
 /* Links */
@@ -132,7 +132,7 @@ body {
 }
 
 .etfswui-link-default-disabled {
-    @apply inline text-gray-400 dark:text-gray-700 hover:cursor-not-allowed;
+    @apply inline text-dark-400 dark:text-dark-700 hover:cursor-not-allowed;
 }
 
 .etfswui-link-danger {
@@ -141,7 +141,7 @@ body {
 }
 
 .etfswui-link-secondary {
-    @apply inline text-gray-600 hover:text-gray-800 hover:underline dark:text-gray-300 dark:hover:text-gray-100
+    @apply inline text-dark-600 hover:text-dark-800 hover:underline dark:text-dark-300 dark:hover:text-dark-100
     transition-all duration-150;
 }
 
@@ -159,8 +159,8 @@ body {
 }
 
 .etfswui-link-as-button-default-disabled {
-    @apply inline-flex items-center rounded-sm bg-gray-400 dark:bg-gray-700
-    px-3 py-2 text-sm font-semibold text-white dark:text-gray-400
+    @apply inline-flex items-center rounded-sm bg-dark-400 dark:bg-dark-700
+    px-3 py-2 text-sm font-semibold text-white dark:text-dark-400
     hover:cursor-not-allowed hover:no-underline;
 }
 
@@ -202,7 +202,7 @@ body {
 }
 
 .etfswui-button-default-disabled {
-    @apply inline-flex items-center rounded-sm bg-gray-400
+    @apply inline-flex items-center rounded-sm bg-dark-400
     px-3 py-2 text-sm font-semibold text-white
     hover:cursor-not-allowed;
 }
@@ -238,7 +238,7 @@ body {
 }
 
 .etfswui-button-as-link-default-disabled {
-    @apply inline text-gray-400 dark:text-gray-700 hover:cursor-not-allowed
+    @apply inline text-dark-400 dark:text-dark-700 hover:cursor-not-allowed
     border-0 bg-transparent p-0;
 }
 
@@ -248,21 +248,21 @@ body {
 }
 
 .etfswui-button-as-link-secondary {
-    @apply inline text-gray-600 hover:text-gray-800 hover:underline dark:text-gray-300 dark:hover:text-gray-100
+    @apply inline text-dark-600 hover:text-dark-800 hover:underline dark:text-dark-300 dark:hover:text-dark-100
     border-0 bg-transparent p-0 focus-visible:outline-none hover:cursor-pointer;
 }
 
 /* Form Elements */
 .etfswui-form-label {
-    @apply block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100 mb-1;
+    @apply block text-sm font-medium leading-6 text-dark-900 dark:text-dark-100 mb-1;
 }
 
 .etfswui-form-input {
     @apply block w-full rounded border-0 py-1.5 px-3
-    text-gray-900 dark:text-dark-100
-    shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-dark-600
-    placeholder:text-gray-400 dark:placeholder:text-dark-400
-    focus:ring-2 focus:ring-inset focus:ring-gray-500 dark:focus:ring-gray-500
+    text-dark-900 dark:text-dark-100
+    shadow-sm ring-1 ring-inset ring-dark-300 dark:ring-dark-600
+    placeholder:text-dark-400 dark:placeholder:text-dark-400
+    focus:ring-2 focus:ring-inset focus:ring-dark-500 dark:focus:ring-dark-500
     outline-none
     bg-white dark:bg-dark-800
     sm:text-sm sm:leading-6
@@ -271,19 +271,19 @@ body {
 
 .etfswui-form-textarea {
     @apply block w-full rounded border-0 py-1.5 px-3
-    text-gray-900 dark:text-dark-100
-    shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-dark-600
-    placeholder:text-gray-400 dark:placeholder:text-dark-400
-    focus:ring-2 focus:ring-inset focus:ring-gray-500 dark:focus:ring-gray-500
+    text-dark-900 dark:text-dark-100
+    shadow-sm ring-1 ring-inset ring-dark-300 dark:ring-dark-600
+    placeholder:text-dark-400 dark:placeholder:text-dark-400
+    focus:ring-2 focus:ring-inset focus:ring-dark-500 dark:focus:ring-dark-500
     bg-white dark:bg-dark-800
     sm:text-sm sm:leading-6;
 }
 
 .etfswui-form-select {
     @apply block w-full rounded border-0 py-1.5 px-3
-    text-gray-900 dark:text-dark-100
-    shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-dark-600
-    focus:ring-2 focus:ring-inset focus:ring-gray-500 dark:focus:ring-gray-500
+    text-dark-900 dark:text-dark-100
+    shadow-sm ring-1 ring-inset ring-dark-300 dark:ring-dark-600
+    focus:ring-2 focus:ring-inset focus:ring-dark-500 dark:focus:ring-dark-500
     bg-white dark:bg-dark-800
     sm:text-sm sm:leading-6;
 }
@@ -293,12 +293,12 @@ body {
 }
 
 .etfswui-form-checkbox {
-    @apply h-4 w-4 rounded border-gray-300 dark:border-dark-600
+    @apply h-4 w-4 rounded border-dark-300 dark:border-dark-600
     focus:ring-indigo-500 focus:ring-offset-0;
 }
 
 .etfswui-form-checkbox-label {
-    @apply ml-2 text-sm text-gray-900 dark:text-dark-100 leading-none;
+    @apply ml-2 text-sm text-dark-900 dark:text-dark-100 leading-none;
 }
 
 .etfswui-form-radio-wrapper {
@@ -306,12 +306,12 @@ body {
 }
 
 .etfswui-form-radio {
-    @apply h-4 w-4 border-gray-300 dark:border-dark-600
+    @apply h-4 w-4 border-dark-300 dark:border-dark-600
     focus:ring-indigo-500 focus:ring-offset-0;
 }
 
 .etfswui-form-radio-label {
-    @apply ml-2 text-sm text-gray-900 dark:text-dark-100 leading-none;
+    @apply ml-2 text-sm text-dark-900 dark:text-dark-100 leading-none;
 }
 
 /* Input Validation States */
@@ -331,15 +331,15 @@ body {
 
 /* Tables */
 .etfswui-table {
-    @apply min-w-full divide-y divide-gray-300 dark:divide-dark-700;
+    @apply min-w-full divide-y divide-dark-300 dark:divide-dark-700;
 }
 
 .etfswui-table-header {
-    @apply py-3.5 pl-6 pr-6 text-sm font-semibold text-gray-900 dark:text-dark-100 text-left;
+    @apply py-3.5 pl-6 pr-6 text-sm font-semibold text-dark-900 dark:text-dark-100 text-left;
 }
 
 .etfswui-table-cell {
-    @apply whitespace-nowrap py-4 pl-6 pr-6 text-sm text-gray-500 dark:text-dark-300 text-left;
+    @apply whitespace-nowrap py-4 pl-6 pr-6 text-sm text-dark-500 dark:text-dark-300 text-left;
 }
 
 /* Add utility classes for table alignment */
@@ -352,19 +352,19 @@ body {
 }
 
 .etfswui-content-table-row {
-    @apply hover:bg-gray-50 dark:hover:bg-dark-800
+    @apply hover:bg-dark-50 dark:hover:bg-dark-800
     transition-all duration-150;
 }
 
 /* Cards */
 .etfswui-card {
-    @apply bg-white dark:bg-dark-800 shadow-sm ring-1 ring-gray-200/50 dark:ring-dark-700/50 rounded-md p-0 overflow-hidden
+    @apply bg-white dark:bg-dark-800 shadow-sm ring-1 ring-dark-200/50 dark:ring-dark-700/50 rounded-md p-0 overflow-hidden
     transition-all duration-150;
 }
 
 .etfswui-card-title {
-    @apply flex items-center justify-between text-lg font-semibold text-gray-900 dark:text-dark-100 px-6 py-4
-    border-b border-gray-200 dark:border-dark-700;
+    @apply flex items-center justify-between text-lg font-semibold text-dark-900 dark:text-dark-100 px-6 py-4
+    border-b border-dark-200 dark:border-dark-700;
 }
 
 .etfswui-card-title-content {
@@ -372,21 +372,21 @@ body {
 }
 
 .etfswui-card-title-text {
-    @apply text-lg font-semibold text-gray-900 dark:text-dark-100 min-w-fit leading-6;
+    @apply text-lg font-semibold text-dark-900 dark:text-dark-100 min-w-fit leading-6;
 }
 
 .etfswui-card-subtitle {
-    @apply text-sm font-normal leading-5 text-gray-500 dark:text-gray-300;
+    @apply text-sm font-normal leading-5 text-dark-500 dark:text-dark-300;
 }
 
 .etfswui-card-menu-button {
-    @apply p-1 -mr-1 rounded-sm text-gray-400 hover:text-gray-600 dark:text-dark-400 dark:hover:text-dark-200
-    hover:bg-gray-50 dark:hover:bg-dark-700
+    @apply p-1 -mr-1 rounded-sm text-dark-400 hover:text-dark-600 dark:text-dark-400 dark:hover:text-dark-200
+    hover:bg-dark-50 dark:hover:bg-dark-700
     transition-all duration-150;
 }
 
 .etfswui-card-text {
-    @apply text-gray-600 dark:text-dark-300 p-6 pt-4;
+    @apply text-dark-600 dark:text-dark-300 p-6 pt-4;
 }
 
 .etfswui-card-content {
@@ -394,7 +394,7 @@ body {
 }
 
 .etfswui-card-image {
-    @apply flex-none w-24 h-24 rounded-sm bg-gray-100 dark:bg-dark-700;
+    @apply flex-none w-24 h-24 rounded-sm bg-dark-100 dark:bg-dark-700;
 }
 
 .etfswui-card-body {
@@ -406,7 +406,7 @@ body {
 }
 
 .etfswui-card-back-link {
-    @apply text-sm font-normal text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100
+    @apply text-sm font-normal text-dark-500 dark:text-dark-300 hover:text-dark-700 dark:hover:text-dark-100
     transition-all duration-150 flex items-center gap-1;
 }
 
@@ -433,12 +433,12 @@ body {
 
 /* Page Title */
 .etfswui-pagetitle {
-    @apply text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-8;
+    @apply text-4xl font-bold tracking-tight text-dark-900 dark:text-white mb-8;
 }
 
 /* Pagination */
 .etfswui-pagination-info {
-    @apply text-sm text-gray-700 dark:text-gray-300;
+    @apply text-sm text-dark-700 dark:text-dark-300;
 }
 
 .etfswui-pagination-nav {
@@ -447,7 +447,7 @@ body {
 
 .etfswui-pagination-item {
     @apply relative inline-flex items-center px-4 py-2 text-sm font-semibold
-    border border-gray-300 dark:border-dark-600
+    border border-dark-300 dark:border-dark-600
     focus:z-20 focus-visible:outline focus-visible:outline-2
     focus-visible:outline-offset-2 focus-visible:outline-primary-500;
 }
@@ -463,36 +463,36 @@ body {
 
 .etfswui-pagination-nav-button {
     @apply relative inline-flex items-center px-2 py-2
-    text-gray-500 dark:text-gray-400
-    ring-1 ring-inset ring-gray-300 dark:ring-dark-600
-    hover:bg-gray-50 hover:text-primary-500 dark:hover:bg-dark-700 dark:hover:text-primary-400
+    text-dark-500 dark:text-dark-400
+    ring-1 ring-inset ring-dark-300 dark:ring-dark-600
+    hover:bg-dark-50 hover:text-primary-500 dark:hover:bg-dark-700 dark:hover:text-primary-400
     focus:z-20 focus:outline-offset-0
     transition-all duration-150;
 }
 
 .etfswui-pagination-nav-button-disabled {
     @apply relative inline-flex items-center px-2 py-2
-    text-gray-300 dark:text-gray-600
-    ring-1 ring-inset ring-gray-300 dark:ring-dark-600
-    bg-gray-50 dark:bg-dark-700
+    text-dark-300 dark:text-dark-600
+    ring-1 ring-inset ring-dark-300 dark:ring-dark-600
+    bg-dark-50 dark:bg-dark-700
     pointer-events-none;
 }
 
 .etfswui-card-menu {
     @apply absolute right-0 top-10 z-10 w-48 rounded-sm bg-white dark:bg-dark-800
-    shadow-lg ring-1 ring-gray-200 dark:ring-dark-700 py-1;
+    shadow-lg ring-1 ring-dark-200 dark:ring-dark-700 py-1;
 }
 
 .etfswui-card-menu-item {
-    @apply flex items-center px-4 py-2 text-sm text-gray-700 dark:text-dark-100
-    hover:bg-gray-100 hover:text-gray-900
+    @apply flex items-center px-4 py-2 text-sm text-dark-700 dark:text-dark-100
+    hover:bg-dark-100 hover:text-dark-900
     dark:hover:bg-dark-700 dark:hover:text-dark-50
     cursor-pointer
     transition-all duration-150;
 }
 
 .etfswui-card-menu-item-icon {
-    @apply mr-3 h-5 w-5 text-gray-400 dark:text-dark-400;
+    @apply mr-3 h-5 w-5 text-dark-400 dark:text-dark-400;
 }
 
 .etfswui-card-menu-wrapper {

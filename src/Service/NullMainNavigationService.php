@@ -66,7 +66,7 @@ readonly class NullMainNavigationService extends AbstractMainNavigationService
 
     public function getBrandLogoHtml(): string
     {
-        return '<span class="text-xl font-bold text-gray-900 dark:text-white">Logo</span>';
+        return '<span class="text-xl font-bold text-dark-900 dark:text-white">Logo</span>';
     }
 
     public function getDropdownTitle(): string
