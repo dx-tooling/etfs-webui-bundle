@@ -8,7 +8,7 @@ body {
 
 /* Navigation */
 .etfswui-nav-bg {
-    @apply bg-white dark:bg-dark-800 shadow-md;
+    @apply bg-white dark:bg-dark-900 shadow-md;
 }
 
 .etfswui-nav-border {
