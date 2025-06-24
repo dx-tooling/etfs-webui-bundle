@@ -1,6 +1,6 @@
-# Janus WebUI Bundle
+# Enterprise Tooling for Symfony · WebUI Bundle
 
-## How to install and setup this bundle in a Janus Application
+## How to install and setup this bundle in a 'Enterprise Tooling for Symfony' Application
 
 ### 1. Composer Setup
 
@@ -90,7 +90,7 @@ return [
 
 #### 5.2 Stimulus Bootstrap
 
-In your application's `assets/bootstrap.ts`, bootstrap the Janus WebUI client-side code with your Stimulus App:
+In your application's `assets/bootstrap.ts`, bootstrap the WebUI client-side code with your Stimulus App:
 
 ```typescript
 import { webuiBootstrap } from "@enterprise-tooling-for-symfony/webui";
