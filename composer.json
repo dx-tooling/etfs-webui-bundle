@@ -1,5 +1,5 @@
 {
-    "name": "dx-tooling/etfs-webui-bundle",
+    "name": "enterprise-tooling-for-symfony/webui-bundle",
     "require": {
         "php": "^8.4",
         "symfony/dependency-injection": "^7.2",
