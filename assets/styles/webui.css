@@ -3,7 +3,7 @@
 @config "../../tailwind.config.js";
 
 body {
-    @apply text-dark-900 dark:text-dark-100 bg-[#f5f5f5] dark:bg-dark-950;
+    @apply text-dark-900 dark:text-dark-100 bg-[#f5f5f5] dark:bg-dark-900;
 }
 
 /* Navigation */
