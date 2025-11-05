@@ -30,14 +30,8 @@ class EtfsWebuiExtension extends Extension implements PrependExtensionInterface
         array            $configs,
         ContainerBuilder $container
     ): void {
-        $configuration = $this->getConfiguration($configs, $container);
-        $config        = $this->processConfiguration($configuration, $configs);
-
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
         $loader->load('services.yaml');
-
-        $container->setParameter('webui.assets.include_tailwind', $config['assets']['include_tailwind']);
-        $container->setParameter('webui.assets.include_stimulus', $config['assets']['include_stimulus']);
     }
 
     public function prepend(ContainerBuilder $container): void

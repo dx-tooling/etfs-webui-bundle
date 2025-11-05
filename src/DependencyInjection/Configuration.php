@@ -9,22 +9,11 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
+    /**
+     * @return TreeBuilder<'array'>
+     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('etfs_webui');
-        $rootNode    = $treeBuilder->getRootNode();
-
-        $rootNode
-            ->children()
-                ->arrayNode('assets')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->booleanNode('include_tailwind')->defaultTrue()->end()
-                        ->booleanNode('include_stimulus')->defaultTrue()->end()
-                    ->end()
-                ->end()
-            ->end();
-
-        return $treeBuilder;
+        return new TreeBuilder('etfs_webui');
     }
 }
