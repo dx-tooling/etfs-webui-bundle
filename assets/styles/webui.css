@@ -153,6 +153,11 @@ body {
     transition-all duration-150;
 }
 
+.etfswui-link-icon {
+    @apply text-dark-500 hover:text-primary-600 dark:text-dark-400 dark:hover:text-primary-400
+    transition-all duration-150;
+}
+
 /* Links that look like buttons */
 .etfswui-link-as-button-default {
     @apply inline-flex items-center rounded-sm bg-primary-500
